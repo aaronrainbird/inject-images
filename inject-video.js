@@ -12,7 +12,7 @@ var subImageType = 1;  //group 2 is individual
 var pidsPath = "";
 var pidNo = "";
 var arDefaultImageTypes = ["in","rw","fr","bk","ou","ou2","ou3","cu","e1","e2","e3","e4","e5","e6","e7","e8","sw"];
-var arDefaultImageTypesFulcrum = ["desc","mp4","in","rw","fr","bk","ou","ou2","ou3","cu","e1","e2","e3","e4","e5","e6","e7","e8","sw","buying1","buying2","buying3"];
+var arDefaultImageTypesFulcrum = ["ou","mp4","in"];
 
 var arUserDefinedPIDs = [];
 var arFulcrumPIDs = [];
@@ -30,12 +30,22 @@ var fulcrumCategory = "";
 var fulcrumSubcategory = "";
 
 
-if(document.URL.search('fulcrum') != -1) {
+if(document.getElementsByClassName('channel_logo')[0] != undefined) {
     var subSite = "fulcrum";
+    
+    if(document.getElementsByClassName('channel_logo')[0].alt.search('OUTNET') != -1)   {
+        site = "ton";
+     }
+    else if(document.getElementsByClassName('channel_logo')[0].alt.search('MRP') != -1)  {
+        site = "mrp";
+        }
+    else if(document.getElementsByClassName('channel_logo')[0].alt.search('NAP') != -1) {
+        site = "nap";   
+    }
 }
 else if(document.URL.search('net-a-porter') != -1) {
     var site = "nap";
-    var imageClass = "product-image"
+    var imageClass = "product-image";
 }
 else if (document.URL.search('theoutnet') != -1) {
     var site = "ton";
@@ -51,26 +61,22 @@ else if (document.URL.search('mrporter') != -1) {
     }    
 }
 
-
-
 if (subSite == "fulcrum") {
     clean(document.body);
     
-    if(document.getElementsByClassName('channel_logo')[0].alt.search('OUTNET') != -1)   {
-        site = "ton";
-     }
-    else if(document.getElementsByClassName('channel_logo')[0].alt.search('MRP') != -1)  {
-        site = "mrp";
-        }
-    else if(document.getElementsByClassName('channel_logo')[0].alt.search('NAP') != -1) {
-        site = "nap";   
-    }
       
     for (var l=0; l < document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes.length; l++) {
     
             if (document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes.length > 19) {
-                if (document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].style.visibility != "collapse") {
-                arFulcrumPIDs.push(document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[1].childNodes[0].childNodes[1].childNodes[0].childNodes[1].textContent);
+               
+               
+                    
+                    if (document.getElementById("image_icon_" +  document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[1].childNodes[0].childNodes[1].childNodes[0].childNodes[1].textContent + "_15").src.search("film") > 0) {
+                        
+                        
+                    
+                                
+                    arFulcrumPIDs.push(document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[1].childNodes[0].childNodes[1].childNodes[0].childNodes[1].textContent);
                 
                 fulcrumDesigner = document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[1].childNodes[0].childNodes[0].textContent;
                 
@@ -95,15 +101,11 @@ if (subSite == "fulcrum") {
                  fulcrumSubcategory =  document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[2].childNodes[0].textContent;  
   
                 arFulcrumSubcategoryPIDs.push(fulcrumSubcategory.trim());      
-                    
-                    
+                 }              
                    
-            }
-        }
+            }        
     typeOfImages = 5;    
     }
-    
-    
 }
 
 else {
@@ -255,16 +257,21 @@ var tableHTML = beginHTML();
 
 
         for (var i = 0; i < arFulcrumPIDs.length; i++) {
-
-            for (var a = 0; a < arDefaultImageTypesFulcrum.length;a++) {
-
+            
+            for (var a = 0; a < 3; a++) {
                tableCell();
-
             }
-            tableHTML += "</tr>";
-
+            
+            if ((i+1) % 2 == 0) {
+                  tableHTML += "</tr><tr><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i-1] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i-1] + "</SPAN></td><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i] + "</SPAN></td></tr>"; 
+            }
+            
+            else if ((i+1) == arFulcrumPIDs.length) {
+                tableHTML += "</tr><tr><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i] + "</SPAN></td></tr>"; 
+            }
         }
-    }   
+  }
+       
     
 
 
@@ -316,22 +323,18 @@ function tableCell() {
         } 
     }
      else if (typeOfImages == 5) {
-        if (a == 0) {
-        tableHTML += "<td class='columns' style='background-color: lightgrey;'><SPAN><B>" + arFulcrumDesignerPIDs[i] + "</B></SPAN><BR><SPAN style='font-size: smaller;'>" + arFulcrumProductDescriptionPIDs[i] + "</SPAN><BR><SPAN style='font-size: small;'>Colour: " + arFulcrumColourPIDs[i] + "</SPAN><BR><BR><I><SPAN style='font-size: small;'>" + arFulcrumProductNotesPIDs[i] + "</I><BR><BR></SPAN><SPAN style='font-size: smaller;'>" + arFulcrumCategoryPIDs[i] + "</SPAN><BR><SPAN style='font-size: small;'>" + arFulcrumSubcategoryPIDs[i] + "</SPAN>";
-        }
-         else if (a == 1) {
+        if (a == 1) {
              if (site == "mrp") {
              
-             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' data-setup='{}' height='800px' width='836px'><source type='video/mp4' src='https://video.mrporter.com/videos/productPage/" + arFulcrumPIDs[i] + "_detail.mp4#t=03'></video><BR>" + arFulcrumPIDs[i] + "_" + arDefaultImageTypesFulcrum[a] + "</td>";
+             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' data-setup='{}' width='464px'  height='475px'><source type='video/mp4' src='https://video.mrporter.com/videos/productPage/" + arFulcrumPIDs[i] + "_detail.mp4#t=03'></video><BR>" + arFulcrumPIDs[i] + "_" + arDefaultImageTypesFulcrum[a] + "</td>";
          }
-         else if (site == "nap"){
-             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' data-setup='{}' height='390px' width='370px'><source type='video/mp4' src='https://video.net-a-porter.com/videos/productPage/" + arFulcrumPIDs[i] + "_detail.mp4#t=05'></video><BR>" + arFulcrumPIDs[i] + "_" + arDefaultImageTypesFulcrum[a] + "</td>";
+            else if (site == "nap"){
+             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' data-setup='{}' height='390px'  width='370px'><source type='video/mp4' src='https://video.net-a-porter.com/videos/productPage/" + arFulcrumPIDs[i] + "_detail.mp4#t=05'></video><BR>" + arFulcrumPIDs[i] + "_" + arDefaultImageTypesFulcrum[a] + "</td>";
          }
          }
-         
-         
+              
         else {
-         tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "'><BR>";
+         tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' width='464px' height='475px'><BR>";
         if (site == "mrp") {
             tableHTML += arFulcrumPIDs[i] + "_" + site + "_" + arDefaultImageTypesFulcrum[a] + "</td>";
         }
@@ -347,7 +350,7 @@ function tableCell() {
 function beginHTML() {
     console.log("test")
     if (subSite == "fulcrum") {
-         return "<html><head><link href='http://vjs.zencdn.net/5.8.8/video-js.css' rel='stylesheet'><script src='http://vjs.zencdn.net/5.8.8/video.js'></script><!-- If you'd like to support IE8 --><script src='http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js'></script></head><body><table class='tg' style='text-align: center; font-size: 300%; font-family: Georgia; border: 1px solid black;'><tr><th class='header'>Description</th><th class='header'>Video</th><th class='header'>IN</th><th class='header'>RW</th><th class='header'>FR</th><th class='header'>BK</th><th class='header'>OU</th><th class='header'>OU2</th><th class='header'>OU3</th><th class='header'>CU</th><th class='header'>E1</th><th class='header'>E2</th><th class='header'>E3</th><th class='header'>E4</th><th class='header'>E5</th><th class='header'>E6</th><th class='header'>E7</th><th class='header'>E8</th><th class='header'>SW</th><th class='header'>Buying Image 1</th><th class='header'>Buying Image 2</th><th class='header'>Buying Image 3</th></tr><tr>";
+         return "<html><head><link href='http://vjs.zencdn.net/5.8.8/video-js.css' rel='stylesheet'><script src='http://vjs.zencdn.net/5.8.8/video.js'></script><!-- If you'd like to support IE8 --><script src='http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js'></script></head><body><table class='tg' style='text-align: center; font-family: Georgia; border: 1px solid black;'><tr><th class='header'>Video</th><th class='header'>OU</th><th class='header'>IN</th><th class='header'>Video</th><th class='header'>OU</th><th class='header'>IN</th></tr><tr>";
     }
     else if (typeOfImages == 1 || typeOfImages == 3 || typeOfImages ==5) {
         return "<table class='tg' style='text-align: center; font-size: 300%; font-family: Georgia; border: 1px solid black;'><tr><th class='header'>IN</th><th class='header'>RW</th><th class='header'>FR</th><th class='header'>BK</th><th class='header'>OU</th><th class='header'>OU2</th><th class='header'>OU3</th><th class='header'>CU</th><th class='header'>E1</th><th class='header'>E2</th><th class='header'>E3</th><th class='header'>E4</th><th class='header'>E5</th><th class='header'>E6</th><th class='header'>E7</th><th class='header'>E8</th><th class='header'>SW</th></tr><tr>";
