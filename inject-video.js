@@ -46,20 +46,17 @@ var tableHTML = "<html><head><link href='http://vjs.zencdn.net/5.8.8/video-js.cs
 
 defineChoices();
 
+
+
     if (subSite == "fulcrum") {   //Fulcrum
-
-
         for (var i = 0; i < arPIDs.length; i++) {
-            
             for (var a = 0; a < 3; a++) {
                tableCell();
             }
-            
-            if ((i+1) % 2 == 0) {
+            if ((i+1) % 2 == 0) { // After every 2nd PID do a descriptions row.
                   tableHTML += "</tr><tr><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i-1] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i-1] + "</SPAN></td><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i] + "</SPAN></td></tr>"; 
             }
-            
-            else if ((i+1) == arPIDs.length) {
+            else if ((i+1) == arPIDs.length) {   // If it's a 2nd PID and there's only one left do just 1 PID description
                 tableHTML += "</tr><tr><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i] + "</SPAN></td></tr>"; 
             }
         }
@@ -79,7 +76,6 @@ defineChoices();
 
     }
 
-
 tableHTML += "</table>";
 
     
@@ -90,8 +86,11 @@ x.document.close();
 
 
 
+
+
+
 function tableCell() {
-       if (a == 1) {
+       if (a == 1) {   // 2nd cell is video cell.
          if (site == "MrP") {
              
              tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' data-setup='{}' width='" + mrpVideoWidth + "px'  height='" + mrpVideoHeight + "px'><source type='video/mp4' src='https://video.mrporter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4#t=03'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
@@ -114,7 +113,6 @@ function tableCell() {
             tableHTML += filename + "</td>";
         }
 }
-
 
 function findPid() {
    
@@ -152,7 +150,7 @@ function findPid() {
 }
 
 function imageFileLocation() {
-        
+    
    if (site == "MrP") {  //MrP
         filename = arPIDs[i] + "_mrp_" + arImageTypes[a];
        if (typeOfImages == 2) {
@@ -219,9 +217,7 @@ function defineChoices() {
             
         typeOfImages = 2
         userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
-        userDefinedPIDs = userDefinedPIDs.replace(/\s+/g, '');
-        arPIDs = userDefinedPIDs.split(',');
-          
+        arPIDs = userDefinedPIDs.split(/[ ,]+/).filter(Boolean);
     }
  
     else {
@@ -237,9 +233,8 @@ function defineChoices() {
                 }
                 else {
                 userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
-                userDefinedPIDs = userDefinedPIDs.replace(/\s+/g, '');
-                arPIDs = userDefinedPIDs.split(',');
-                }
+                arPIDs = userDefinedPIDs.split(/[ ,]+/).filter(Boolean);
+               }
             } 
                  
         }
