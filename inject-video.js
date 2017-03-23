@@ -226,7 +226,7 @@ function defineChoices() {
     
         findPid();
         
-            if (typeOfImages == 2) {
+            if (typeOfImages == 2 && arPIDs.length > 0) {
                 var includePIDs = prompt('Theres PIDs on this page, want to include those?\n1. Yes\n2. No');
                 if (includePIDs == 1) {
                     userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)',arPIDs.join(','));
