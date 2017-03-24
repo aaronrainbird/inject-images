@@ -31,6 +31,8 @@ var fulcrumColour = "";
 var fulcrumCategory = "";
 var fulcrumSubcategory = "";
 var userDefinedPIDs = "";
+var i = 0;
+var j = 0;
 
 var napImageWidth = 390;
 var napImageHeight = 585;
@@ -59,6 +61,7 @@ defineChoices();
             else if ((i+1) == arPIDs.length) {   // If it's a 2nd PID and there's only one left do just 1 PID description
                 tableHTML += "</tr><tr><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i] + "</SPAN></td></tr>"; 
             }
+           
         }
     }
 
@@ -116,23 +119,29 @@ function tableCell() {
 
 function findPid() {
    
-    for (var i = 0; i < document.getElementsByClassName(imageClass).length; i++) {
-        
+    for (var j = 0; j < document.getElementsByClassName(imageClass).length; j++) {
+         console.log(j)
         if (site == "MrP") {
+            
             if (document.getElementsByClassName('pl-products-item__link').length > 1) {
-                var pidsPath = document.getElementsByClassName(imageClass)[i].href; 
+                var pidsPath = document.getElementsByClassName(imageClass)[j].href; 
             }
-            else {
-                var pidsPath = document.getElementsByClassName(imageClass)[i].childNodes[1].childNodes[1].src;
+            else if (document.getElementsByClassName('product-carousel__image  product-carousel__item--current') == undefined) {
+              
+                var pidsPath = document.getElementsByClassName(imageClass)[j].childNodes[1].childNodes[1].src;
             }
 
+          if (pidsPath != undefined) {
+          
             var pidsFull = pidsPath.replace(/^.*[\\\/]/, '');         
             arPIDs.push(pidsFull.slice(0,6));
-
+          }
+           
         }
+         
         if (site == "NAP") {
 
-            var pidsPath = document.getElementsByClassName(imageClass)[i].childNodes[1].pathname;
+            var pidsPath = document.getElementsByClassName(imageClass)[j].childNodes[1].pathname;
 
             if (pidsPath.slice(0,8) == '/product') {
                 var pidsFull = pidsPath.replace('/product/', '');    
@@ -146,7 +155,9 @@ function findPid() {
             arPIDs.push(pidsFull.slice(0,6));
 
         }
+        
     }
+    
 }
 
 function imageFileLocation() {
@@ -176,12 +187,12 @@ function imageFileLocation() {
 
 
 function defineChoices() {
+  
     
     if(document.getElementsByClassName('channel_logo')[0] != undefined) {
-        subSite = "fulcrum";
-
-      getFulcrumInfo();
-
+         subSite = "fulcrum";
+         getFulcrumInfo();
+    
     if(document.getElementsByClassName('channel_logo')[0].alt.search('MRP') != -1)  {
           site = "MrP";      
         }
@@ -203,9 +214,9 @@ function defineChoices() {
             imageClass = "product-image";
         }    
     }
-    
+   
     if (subSite != "fulcrum") {
-
+       
         if (site != "NAP" && site != "MrP") {
             var siteChoice = prompt("You don't appear to be on any of the YNAP group sites. Which site would you like to search? Choose 1 or 2. \n1. NAP \n2. MrP");
             if (siteChoice == 1) {
@@ -222,23 +233,30 @@ function defineChoices() {
  
     else {
     
-   typeOfImages = prompt('What images would you like to view on the ' + site + ' site? \n1. All images on Page\n2. User defined PIDs');
-    
-        findPid();
-        
-            if (typeOfImages == 2 && arPIDs.length > 0) {
-                var includePIDs = prompt('Theres PIDs on this page, want to include those?\n1. Yes\n2. No');
-                if (includePIDs == 1) {
-                    userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)',arPIDs.join(','));
-                }
-                else {
-                userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
+      findPid();
+      
+      if (arPIDs.length > 0) {
+      typeOfImages = prompt('What images would you like to view on the ' + site + ' site? \n1. All images on Page\n2. User defined PIDs');
+      }
+      else {
+        userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
                 arPIDs = userDefinedPIDs.split(/[ ,]+/).filter(Boolean);
-               }
-            } 
-                 
+      }
+        
+      if (typeOfImages == 2 && arPIDs.length > 0) {
+        var includePIDs = prompt('Theres PIDs on this page, want to include those?\n1. Yes\n2. No');
+        if (includePIDs == 1) {
+              userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)',arPIDs.join(','));
         }
+        else {
+              userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
+              arPIDs = userDefinedPIDs.split(/[ ,]+/).filter(Boolean);
+        }
+      } 
+                 
     }
+ }
+    
  }
 
 function getFulcrumInfo() {
