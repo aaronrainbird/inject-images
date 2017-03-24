@@ -120,7 +120,7 @@ function tableCell() {
 function findPid() {
    
     for (var j = 0; j < document.getElementsByClassName(imageClass).length; j++) {
-         console.log(j)
+         
         if (site == "MrP") {
             
             if (document.getElementsByClassName('pl-products-item__link').length > 1) {
