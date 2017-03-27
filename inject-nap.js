@@ -8,8 +8,8 @@ var imageClass = "";
 var typeOfImages = 0;
 var filename = "";
 
-var napImageWidth = 390;
-var napImageHeight = 585;
+var napImageWidth = 180;
+var napImageHeight = 270;
 
 var i = 0;
 var j = 0;
@@ -17,7 +17,10 @@ var a = 0;
 var b = 0;
 var arPIDs = [];
 
+
 var tableHTML = "<html><body><table class='tg' style='text-align: center; font-family: Georgia; border: 1px solid black;'><tr>"
+
+injectImages(0);
 
 function injectImages(number) {
 
@@ -52,7 +55,7 @@ x.document.close();
 }
     
 function tableCell() {
-tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypes[a] + "_pp.jpg?" + escape(new Date()) + "' width='" + napImageWidth + "px' height='" + napImageHeight + "px'></td>";
+tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypes[a] + "_sl.jpg?" + escape(new Date()) + "' width='" + napImageWidth + "px' height='" + napImageHeight + "px'></td>";
 }
 
 function tableCellText() {
