@@ -17,7 +17,7 @@ var j = 0;
 var a = 0;
 var b = 0;
 
-var arPIDs = [503988,823649,807689,12515];
+
 
 var tableHTML = "<html><body><table class='tg' style='text-align: center; font-family: Georgia; border: 1px solid black;'><tr>"
 
