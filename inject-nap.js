@@ -21,8 +21,6 @@ var b = 0;
 
 var tableHTML = "<html><body><table class='tg' style='text-align: center; font-family: Georgia; border: 1px solid black;'><tr>"
 
-injectImages()
-
 function injectImages() {
 
 for (var z = 0;z<arImageTypes.length;z++) {
