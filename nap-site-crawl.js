@@ -57,7 +57,7 @@ for(var b = 0;b<groupedArr.length;b++) {
     if (b>0 && b % 3 == 0 && b != groupedArr.length) {
         tableHTML += "</TR><TR>"
     }
-    tableHTML += "<TD><textarea class='arrays' rows='25' cols='80' style='font-size:10px;background-color: orangered'>" + groupedArr[b] + "</textarea><BR><button class='confirm' onclick='confirmChecked(" + b + ")'>Not Checked</button><button class='injectImages' onclick='injectImages(" + b + ")'>Inject Images</button> </TD>"   
+    tableHTML += "<TD><textarea class='arrays' rows='25' cols='80' style='font-size:10px;background-color: orangered'>" + groupedArr[b] + "</textarea><BR><button class='confirm' onclick='confirmChecked(" + b + ")'>Mark Checked</button><button class='injectImages' onclick='injectImages(" + b + ")'>Inject Images</button> </TD>"   
     
 }
 
