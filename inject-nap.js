@@ -55,7 +55,7 @@ x.document.close();
 }
     
 function tableCell() {
-tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypes[a] + "_sl.jpg?" + escape(new Date()) + "></td>";
+tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypes[a] + "_sl.jpg?" + escape(new Date()) + "'></td>";
 }
 
 function tableCellText() {
