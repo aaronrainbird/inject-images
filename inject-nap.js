@@ -16,13 +16,15 @@ var i = 0;
 var j = 0;
 var a = 0;
 var b = 0;
-
+var arPIDs = [];
 
 
 var tableHTML = "<html><body><table class='tg' style='text-align: center; font-family: Georgia; border: 1px solid black;'><tr>"
 
-function injectImages() {
+function injectImages(number) {
 
+  arPIDs = document.getElementsByClassName('arrays')[number].value.split(',')
+    
 for (var z = 0;z<arImageTypes.length;z++) {
     tableHTML += "<th class='header'>" + arImageTypes[z] + "</th>"
 }
@@ -31,9 +33,7 @@ for (var z = 0;z<arImageTypes.length;z++) {
 
     
 for (i = 0; i < arPIDs.length; i++) {
-    
-    
-    
+        
             for (a = 0; a < arImageTypes.length;a++) {
                 tableCell();
                
