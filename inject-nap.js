@@ -1,4 +1,3 @@
-
 var imageType = "";
 var pidsPath = "";
 
@@ -21,6 +20,8 @@ var arPIDs = [];
 
 var tableHTML = "<html><body><table class='tg' style='text-align: center; font-family: Georgia; border: 1px solid black;'><tr>"
 
+injectImages(0);
+
 function injectImages(number) {
 
   arPIDs = document.getElementsByClassName('arrays')[number].value.split(',')
@@ -35,11 +36,10 @@ for (var z = 0;z<arImageTypes.length;z++) {
 for (i = 0; i < arPIDs.length; i++) {
         
             for (a = 0; a < arImageTypes.length;a++) {
-                tableCell();
-               
+                tableCell();  
             }
     tableHTML += "</tr><tr>"
-            for (b = 0; a < arImageTypes.length;a++) {
+            for (b = 0; b < arImageTypes.length;b++) {
                 tableCellText();
             }
     tableHTML += "</tr><tr>"    
@@ -59,6 +59,6 @@ tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC=
 }
 
 function tableCellText() {
-tableHTML += "<td class='columns' style='background-color: lightgrey;'>" + arPIDs[i] + "_" + arImageTypes[a];
+tableHTML += "<td class='columns' style='background-color: lightgrey;'>" + arPIDs[i] + "_" + arImageTypes[b];
 }
 
