@@ -17,10 +17,7 @@ var a = 0;
 var b = 0;
 var arPIDs = [];
 
-
 var tableHTML = "<html><body><table class='tg' style='text-align: center; font-family: Georgia; border: 1px solid black;'><tr>"
-
-injectImages(0);
 
 function injectImages(number) {
 
@@ -55,10 +52,9 @@ x.document.close();
 }
     
 function tableCell() {
-tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + "https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypes[a] + "_pp.jpg?" + escape(new Date()) + "' width='" + napImageWidth + "px' height='" + napImageHeight + "px'>";
+tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypes[a] + "_pp.jpg?" + escape(new Date()) + "' width='" + napImageWidth + "px' height='" + napImageHeight + "px'></td>";
 }
 
 function tableCellText() {
-tableHTML += "<td class='columns' style='background-color: lightgrey;'>" + arPIDs[i] + "_" + arImageTypes[b];
+tableHTML += "<td class='columns' style='background-color: lightgrey;'>" + arPIDs[i] + "_" + arImageTypes[b] + "</td>";
 }
-
