@@ -13,10 +13,10 @@ var pidsPath = "";
 var pidNo = "";
 var arDefaultImageTypes = ["in","rw","fr","bk","ou","ou2","ou3","cu","e1","e2","e3","e4","e5","e6","e7","e8","sw"];
 var arDefaultImageTypesFulcrum = ["desc","in","rw","fr","bk","ou","ou2","ou3","cu","e1","e2","e3","e4","e5","e6","e7","e8","sw","buying1","buying2","buying3"];
+
 var a = 0;
 var i = 0;
 var l = 0;
-var n = 0;
 
 var arUserDefinedPIDs = [];
 var arFulcrumPIDs = [];
@@ -55,10 +55,9 @@ else if (document.URL.search('mrporter') != -1) {
     }    
 }
 
-
-
 if (subSite == "fulcrum") {
-    clean(document.body);
+    
+  clean(document.body);
     
     if(document.getElementsByClassName('channel_logo')[0].alt.search('OUTNET') != -1)   {
         site = "ton";
@@ -461,7 +460,7 @@ function imageFileLocation() {
 
 function clean(node)
 {
-  for(n = 0; n < node.childNodes.length; n ++)
+  for(var n = 0; n < node.childNodes.length;n++)
   {
     var child = node.childNodes[n];
     if
