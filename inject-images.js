@@ -13,6 +13,10 @@ var pidsPath = "";
 var pidNo = "";
 var arDefaultImageTypes = ["in","rw","fr","bk","ou","ou2","ou3","cu","e1","e2","e3","e4","e5","e6","e7","e8","sw"];
 var arDefaultImageTypesFulcrum = ["desc","in","rw","fr","bk","ou","ou2","ou3","cu","e1","e2","e3","e4","e5","e6","e7","e8","sw","buying1","buying2","buying3"];
+var a = 0;
+var i = 0;
+var l = 0;
+var n = 0;
 
 var arUserDefinedPIDs = [];
 var arFulcrumPIDs = [];
@@ -66,7 +70,7 @@ if (subSite == "fulcrum") {
         site = "nap";   
     }
       
-    for (var l=0; l < document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes.length; l++) {
+    for (l=0; l < document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes.length; l++) {
     
             if (document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes.length > 19) {
                 if (document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].style.visibility != "collapse") {
@@ -179,11 +183,11 @@ if (typeOfImages == 2 || typeOfImages == 4) {
 var tableHTML = beginHTML();
 
     if (typeOfImages == 1) {
-        for (var i = 0; i < document.getElementsByClassName(imageClass).length; i++) {
+        for (i = 0; i < document.getElementsByClassName(imageClass).length; i++) {
 
             var pidNo = findPid();
 
-            for (var a = 0; a < arDefaultImageTypes.length;a++) {
+            for (a = 0; a < arDefaultImageTypes.length;a++) {
                 tableCell();
             }
             
@@ -236,7 +240,7 @@ var tableHTML = beginHTML();
         userDefinedPIDs = userDefinedPIDs.replace(/\s+/g, '');
         var arUserDefinedPIDs = userDefinedPIDs.split(',');
         
-        for (var i = 0; i < arUserDefinedPIDs.length; i++) {
+        for (i = 0; i < arUserDefinedPIDs.length; i++) {
             
                
               if (i > 0 && i % 6 == 0) {
@@ -254,9 +258,9 @@ var tableHTML = beginHTML();
     else if (typeOfImages == 5) {   //Fulcrum
 
 
-        for (var i = 0; i < arFulcrumPIDs.length; i++) {
+        for (i = 0; i < arFulcrumPIDs.length; i++) {
 
-            for (var a = 0; a < arDefaultImageTypesFulcrum.length;a++) {
+            for (a = 0; a < arDefaultImageTypesFulcrum.length;a++) {
 
                tableCell();
 
@@ -388,67 +392,67 @@ function findPid() {
 function imageFileLocation() {
     
      if (a == 17) {
-         return "//fulcrum.net-a-porter.com/static/images/product/" + arFulcrumPIDs[i] + "/" + "100.jpg?" + escape(new Date());
+         return "http://fulcrum.net-a-porter.com/static/images/product/" + arFulcrumPIDs[i] + "/" + "100.jpg?" + escape(new Date());
      }
      else if (a == 18) {
-          return "//fulcrum.net-a-porter.com/static/images/product/" + arFulcrumPIDs[i] + "/" + "200.jpg?" + escape(new Date());
+          return "http://fulcrum.net-a-porter.com/static/images/product/" + arFulcrumPIDs[i] + "/" + "200.jpg?" + escape(new Date());
      }
      else if (a == 19) {
-         return "//fulcrum.net-a-porter.com/static/images/product/" + arFulcrumPIDs[i] + "/" + "300.jpg?" + escape(new Date());
+         return "http://fulcrum.net-a-porter.com/static/images/product/" + arFulcrumPIDs[i] + "/" + "300.jpg?" + escape(new Date());
      }
     
-    else if (site == "ton") {   //ton
+    else if (site == "ton") {   http://ton
         if (typeOfImages == 1) {
-             return "//cache.theoutnet.com/images/products/" + pidNo + "/" + pidNo + "_" + arDefaultImageTypes[a] + "_pp.jpg?" + escape(new Date());
+             return "http://cache.theoutnet.com/images/products/" + pidNo + "/" + pidNo + "_" + arDefaultImageTypes[a] + "_pp.jpg?" + escape(new Date());
         }
         else if (typeOfImages == 2) {
-            return "//cache.theoutnet.com/images/products/" + pidNo + "/" + pidNo + "_" + imageType + "_pp.jpg?" + escape(new Date());
+            return "http://cache.theoutnet.com/images/products/" + pidNo + "/" + pidNo + "_" + imageType + "_pp.jpg?" + escape(new Date());
         }    
          else if (typeOfImages == 3) {
-             return "//cache.theoutnet.com/images/products/" + arUserDefinedPIDs[i] + "/" + arUserDefinedPIDs[i] + "_" + arDefaultImageTypes[a] + "_pp.jpg?" + escape(new Date());
+             return "http://cache.theoutnet.com/images/products/" + arUserDefinedPIDs[i] + "/" + arUserDefinedPIDs[i] + "_" + arDefaultImageTypes[a] + "_pp.jpg?" + escape(new Date());
         }
         else if (typeOfImages == 4) {
-             return "//cache.theoutnet.com/images/products/" + arUserDefinedPIDs[i] + "/" + arUserDefinedPIDs[i] + "_" + imageType + "_pp.jpg?" + escape(new Date());
+             return "http://cache.theoutnet.com/images/products/" + arUserDefinedPIDs[i] + "/" + arUserDefinedPIDs[i] + "_" + imageType + "_pp.jpg?" + escape(new Date());
         }
          else if (typeOfImages == 5) {
-             return "//cache.theoutnet.com/images/products/" + arFulcrumPIDs[i] + "/" + arFulcrumPIDs[i] + "_" + arDefaultImageTypesFulcrum[a] + "_pp.jpg?" + escape(new Date());
+             return "http://cache.theoutnet.com/images/products/" + arFulcrumPIDs[i] + "/" + arFulcrumPIDs[i] + "_" + arDefaultImageTypesFulcrum[a] + "_pp.jpg?" + escape(new Date());
         }
         
     }
         
-    else if (site == "mrp") {  //mrP
+    else if (site == "mrp") {  http://mrP
          if (typeOfImages == 1) {
-             return "//cache.mrporter.com/images/products/" + pidNo + "/" + pidNo + "_" + "mrp" + "_" + arDefaultImageTypes[a] + "_xl.jpg?" + escape(new Date());
+             return "http://cache.mrporter.com/images/products/" + pidNo + "/" + pidNo + "_" + "mrp" + "_" + arDefaultImageTypes[a] + "_xl.jpg?" + escape(new Date());
         }
         else if (typeOfImages == 2) {
-           return "//cache.mrporter.com/images/products/" + pidNo + "/" + pidNo + "_" + "mrp" + "_" + imageType + "_xl.jpg?" + escape(new Date());
+           return "http://cache.mrporter.com/images/products/" + pidNo + "/" + pidNo + "_" + "mrp" + "_" + imageType + "_xl.jpg?" + escape(new Date());
         }    
          else if (typeOfImages == 3) {
-            return "//cache.mrporter.com/images/products/" + arUserDefinedPIDs[i] + "/" + arUserDefinedPIDs[i] + "_" + "mrp" + "_" + arDefaultImageTypes[a] + "_xl.jpg?" + escape(new Date()); 
+            return "http://cache.mrporter.com/images/products/" + arUserDefinedPIDs[i] + "/" + arUserDefinedPIDs[i] + "_" + "mrp" + "_" + arDefaultImageTypes[a] + "_xl.jpg?" + escape(new Date()); 
         }
          else if (typeOfImages == 4) {
-            return "//cache.mrporter.com/images/products/" + arUserDefinedPIDs[i] + "/" + arUserDefinedPIDs[i] + "_" + "mrp" + "_" + imageType + "_xl.jpg?" + escape(new Date()); 
+            return "http://cache.mrporter.com/images/products/" + arUserDefinedPIDs[i] + "/" + arUserDefinedPIDs[i] + "_" + "mrp" + "_" + imageType + "_xl.jpg?" + escape(new Date()); 
         }
         else if (typeOfImages == 5) {
-            return "//cache.mrporter.com/images/products/" + arFulcrumPIDs[i] + "/" + arFulcrumPIDs[i] + "_" + "mrp" + "_" + arDefaultImageTypesFulcrum[a] + "_xl.jpg?" + escape(new Date()); 
+            return "http://cache.mrporter.com/images/products/" + arFulcrumPIDs[i] + "/" + arFulcrumPIDs[i] + "_" + "mrp" + "_" + arDefaultImageTypesFulcrum[a] + "_xl.jpg?" + escape(new Date()); 
         }
         
     }
-    else if (site == "nap") {    //nap
+    else if (site == "nap") {    http://nap
          if (typeOfImages == 1) {
-             return "//cache.net-a-porter.com/images/products/" + pidNo + "/" + pidNo + "_" + arDefaultImageTypes[a] + "_pp.jpg?" + escape(new Date());
+             return "http://cache.net-a-porter.com/images/products/" + pidNo + "/" + pidNo + "_" + arDefaultImageTypes[a] + "_pp.jpg?" + escape(new Date());
         }
         else if (typeOfImages == 2) {
-            return "//cache.net-a-porter.com/images/products/" + pidNo + "/" + pidNo + "_" + imageType + "_pp.jpg?" + escape(new Date());
+            return "http://cache.net-a-porter.com/images/products/" + pidNo + "/" + pidNo + "_" + imageType + "_pp.jpg?" + escape(new Date());
         }    
          else if (typeOfImages == 3) {
-             return "//cache.net-a-porter.com/images/products/" + arUserDefinedPIDs[i] + "/" + arUserDefinedPIDs[i] + "_" + arDefaultImageTypes[a] + "_pp.jpg?" + escape(new Date());
+             return "http://cache.net-a-porter.com/images/products/" + arUserDefinedPIDs[i] + "/" + arUserDefinedPIDs[i] + "_" + arDefaultImageTypes[a] + "_pp.jpg?" + escape(new Date());
         }
         else if (typeOfImages == 4) {
-             return "//cache.net-a-porter.com/images/products/" + arUserDefinedPIDs[i] + "/" + arUserDefinedPIDs[i] + "_" + imageType + "_pp.jpg?" + escape(new Date());
+             return "http://cache.net-a-porter.com/images/products/" + arUserDefinedPIDs[i] + "/" + arUserDefinedPIDs[i] + "_" + imageType + "_pp.jpg?" + escape(new Date());
         }
          else if (typeOfImages == 5) {
-             return "//cache.net-a-porter.com/images/products/" + arFulcrumPIDs[i] + "/" + arFulcrumPIDs[i] + "_" + arDefaultImageTypesFulcrum[a] + "_pp.jpg?" + escape(new Date());
+             return "http://cache.net-a-porter.com/images/products/" + arFulcrumPIDs[i] + "/" + arFulcrumPIDs[i] + "_" + arDefaultImageTypesFulcrum[a] + "_pp.jpg?" + escape(new Date());
         }
     }
     
@@ -457,7 +461,7 @@ function imageFileLocation() {
 
 function clean(node)
 {
-  for(var n = 0; n < node.childNodes.length; n ++)
+  for(n = 0; n < node.childNodes.length; n ++)
   {
     var child = node.childNodes[n];
     if
