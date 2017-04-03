@@ -43,7 +43,7 @@ var mrpImageHeight = 475;
 var mrpVideoWidth = 464;
 var mrpVideoHeight = 475;
 
-var tableHTML = "<html><head><link href='http://vjs.zencdn.net/5.8.8/video-js.css' rel='stylesheet'><script src='http://vjs.zencdn.net/5.8.8/video.js'></script><!-- If you'd like to support IE8 --><script src='http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js'></script></head><body><table class='tg' style='text-align: center; font-family: Georgia; border: 1px solid black;'><tr><th class='header'>OU</th><th class='header'>Video</th><th class='header'>IN</th><th class='header'>OU</th><th class='header'>Video</th><th class='header'>IN</th></tr><tr>"
+var tableHTML = "<html><head><link href='http://vjs.zencdn.net/5.8.8/video-js.css' rel='stylesheet'><script src='http://vjs.zencdn.net/5.8.8/video.js'></script><!-- If you'd like to support IE8 --><script src='http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js'></script></head><body><table class='tg' style='text-align: center; font-family: Georgia; border: 1px solid black;'><tr><th class='header'>OU</th><th class='header'>Video</th><th class='header'>IN</th></tr><tr>"
 
 
 defineChoices();
@@ -55,12 +55,10 @@ defineChoices();
             for (var a = 0; a < 3; a++) {
                tableCell();
             }
-            if ((i+1) % 2 == 0) { // After every 2nd PID do a descriptions row.
+            
                   tableHTML += "</tr><tr><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i-1] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i-1] + "</SPAN></td><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i] + "</SPAN></td></tr>"; 
-            }
-            else if ((i+1) == arPIDs.length) {   // If it's a 2nd PID and there's only one left do just 1 PID description
-                tableHTML += "</tr><tr><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i] + "</SPAN></td></tr>"; 
-            }
+            
+          
            
         }
     }
@@ -71,10 +69,9 @@ defineChoices();
             for (var a = 0; a < arImageTypes.length;a++) {
                 tableCell();
             }
-            
-            if ((i+1) % 2 == 0) {
+                        
                 tableHTML += "</tr>";    // Put more info in here later if appropriate.
-            }
+            
         }
 
     }
@@ -96,10 +93,10 @@ function tableCell() {
        if (a == 1) {   // 2nd cell is video cell.
          if (site == "MrP") {
              
-             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' data-setup='{}' width='" + mrpVideoWidth + "px'  height='" + mrpVideoHeight + "px'><source type='video/mp4' src='https://video.mrporter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4#t=03'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
+             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' width='" + mrpVideoWidth + "px'  height='" + mrpVideoHeight + "px'><source type='video/mp4' src='https://video.mrporter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4#t=03'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "<BR><textarea rows='3' cols='75' placeholder='Feedback'></textarea></td>";
          }
             else if (site == "NAP"){
-             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' data-setup='{}' height='" + napImageHeight + "px'  width='" + napVideoWidth + "px'><source type='video/mp4' src='https://video.net-a-porter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4#t=05'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
+             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' height='" + napImageHeight + "px'  width='" + napVideoWidth + "px'><source type='video/mp4' src='https://video.net-a-porter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4#t=05'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "<BR><textarea rows='3' cols='64' placeholder='Feedback'></textarea></td>";
          }
         }
               
@@ -126,9 +123,10 @@ function findPid() {
             if (document.getElementsByClassName('pl-products-item__link').length > 1) {
                 var pidsPath = document.getElementsByClassName(imageClass)[j].href; 
             }
-            else if (document.getElementsByClassName('product-carousel__image  product-carousel__item--current') == undefined) {
-              
+            else if (document.getElementsByClassName('product-carousel__image  product-carousel__item--current') != undefined) {
+              console.log("test");
                 var pidsPath = document.getElementsByClassName(imageClass)[j].childNodes[1].childNodes[1].src;
+                
             }
 
           if (pidsPath != undefined) {
@@ -189,22 +187,22 @@ function imageFileLocation() {
 function defineChoices() {
   
     
+    
     if(document.getElementsByClassName('channel_logo')[0] != undefined) {
          subSite = "fulcrum";
          getFulcrumInfo();
     
-    if(document.getElementsByClassName('channel_logo')[0].alt.search('MRP') != -1)  {
-          site = "MrP";      
+        if(document.getElementsByClassName('channel_logo')[0].alt.search('MRP') != -1)  {
+              site = "MrP";      
         }
         else if(document.getElementsByClassName('channel_logo')[0].alt.search('NAP') != -1) {
-          site = "NAP";   
+              site = "NAP";   
         }
     }
     else if (document.URL.search('net-a-porter') != -1) {
         site = "NAP";
         imageClass = "product-image";
     }
-
     else if (document.URL.search('mrporter') != -1) {
         site = "MrP";
         if (document.getElementsByClassName('pl-products-item__link').length > 1) {
@@ -215,35 +213,30 @@ function defineChoices() {
         }    
     }
    
-    if (subSite != "fulcrum") {
-       
-        if (site != "NAP" && site != "MrP") {
-            var siteChoice = prompt("You don't appear to be on any of the YNAP group sites. Which site would you like to search? Choose 1 or 2. \n1. NAP \n2. MrP");
-            if (siteChoice == 1) {
-                site = "NAP";
-            }
-        else {
-            site = "MrP";
-        }
-            
-        typeOfImages = 2
-        userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
-        arPIDs = userDefinedPIDs.split(/[ ,]+/).filter(Boolean);
+    findPid();
+             
+    if (arPIDs.length > 0) {
+        typeOfImages = prompt('What images would you like to view on the ' + site + ' site? \n1. All images on Page\n2. User defined PIDs');
     }
- 
     else {
-    
-      findPid();
-      
-      if (arPIDs.length > 0) {
-      typeOfImages = prompt('What images would you like to view on the ' + site + ' site? \n1. All images on Page\n2. User defined PIDs');
-      }
-      else {
-        userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
+        if (subSite != "fulcrum") {
+            if (site != "NAP" && site != "MrP") {
+                var siteChoice = prompt("You don't appear to be on any of the YNAP group sites. Which site would you like to search? Choose 1 or 2. \n1. NAP \n2. MrP");
+                if (siteChoice == 1) {
+                    site = "NAP";
+                }
+                else {
+                    site = "MrP";
+                }
+          
+                userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
                 arPIDs = userDefinedPIDs.split(/[ ,]+/).filter(Boolean);
+      
+            }
+          }
       }
         
-      if (typeOfImages == 2 && arPIDs.length > 0) {
+    if (typeOfImages == 2 && arPIDs.length > 0) {
         var includePIDs = prompt('Theres PIDs on this page, want to include those?\n1. Yes\n2. No');
         if (includePIDs == 1) {
               userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)',arPIDs.join(','));
@@ -253,11 +246,7 @@ function defineChoices() {
               userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
               arPIDs = userDefinedPIDs.split(/[ ,]+/).filter(Boolean);
         }
-      } 
-                 
-    }
- }
-    
+    }      
  }
 
 function getFulcrumInfo() {
