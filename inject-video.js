@@ -55,11 +55,8 @@ defineChoices();
             for (var a = 0; a < 3; a++) {
                tableCell();
             }
+                  tableHTML += "</tr><tr><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i] + "</SPAN></td></tr>"; 
             
-                  tableHTML += "</tr><tr><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i-1] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i-1] + "</SPAN></td><td colspan='3' style='border: 1px solid black;'>"  + arFulcrumProductDescriptionPIDs[i] + "</SPAN><BR><SPAN>Colour: " + arFulcrumColourPIDs[i] + "</SPAN></td></tr>"; 
-            
-          
-           
         }
     }
 
@@ -95,8 +92,8 @@ function tableCell() {
              
              tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' width='" + mrpVideoWidth + "px'  height='" + mrpVideoHeight + "px'><source type='video/mp4' src='https://video.mrporter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4#t=03'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "<BR><textarea rows='3' cols='75' placeholder='Feedback'></textarea></td>";
          }
-            else if (site == "NAP"){
-             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' height='" + napImageHeight + "px'  width='" + napVideoWidth + "px'><source type='video/mp4' src='https://video.net-a-porter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4#t=05'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "<BR><textarea rows='3' cols='64' placeholder='Feedback'></textarea></td>";
+            else if (site == "NAP") {
+             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' height='" + napImageHeight + "px'  width='" + napVideoWidth + "px'><source type='video/mp4' src='https://video.net-a-porter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4#t=03'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "<BR><textarea rows='3' cols='64' placeholder='Feedback'></textarea></td>";
          }
         }
               
@@ -124,7 +121,9 @@ function findPid() {
                 var pidsPath = document.getElementsByClassName(imageClass)[j].href; 
             }
             else if (document.getElementsByClassName('product-carousel__image  product-carousel__item--current') != undefined) {
-                var pidsPath = document.getElementsByClassName(imageClass)[j].childNodes[1].childNodes[1].src; 
+              console.log("test");
+                var pidsPath = document.getElementsByClassName(imageClass)[j].childNodes[1].childNodes[1].src;
+                
             }
 
           if (pidsPath != undefined) {
