@@ -124,9 +124,7 @@ function findPid() {
                 var pidsPath = document.getElementsByClassName(imageClass)[j].href; 
             }
             else if (document.getElementsByClassName('product-carousel__image  product-carousel__item--current') != undefined) {
-              console.log("test");
-                var pidsPath = document.getElementsByClassName(imageClass)[j].childNodes[1].childNodes[1].src;
-                
+                var pidsPath = document.getElementsByClassName(imageClass)[j].childNodes[1].childNodes[1].src; 
             }
 
           if (pidsPath != undefined) {
