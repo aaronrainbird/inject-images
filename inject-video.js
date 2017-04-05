@@ -90,10 +90,10 @@ function tableCell() {
        if (a == 1) {   // 2nd cell is video cell.
          if (site == "MrP") {
              
-             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' width='" + mrpVideoWidth + "px'  height='" + mrpVideoHeight + "px'><source type='video/mp4' src='https://video.mrporter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4#t=03'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
+             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' width='" + mrpVideoWidth + "px'  height='" + mrpVideoHeight + "px'><source type='video/mp4' src='https://video.mrporter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
          }
             else if (site == "NAP") {
-             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' height='" + napImageHeight + "px'  width='" + napVideoWidth + "px'><source type='video/mp4' src='https://video.net-a-porter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4#t=03'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
+             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' height='" + napImageHeight + "px'  width='" + napVideoWidth + "px'><source type='video/mp4' src='https://video.net-a-porter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
          }
         }
               
