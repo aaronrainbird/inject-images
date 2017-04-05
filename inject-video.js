@@ -48,7 +48,11 @@ var tableHTML = "<html><head><link href='http://vjs.zencdn.net/5.8.8/video-js.cs
 
 defineChoices();
 
-
+ var timeDelay = "";   
+    var timeChoice = prompt("Start from beginning or a few seconds in for colour matching? Choose 1 or 2. \n1. Start from beginning \n2. Few seconds in");
+    if (timeChoice == 2) {
+        timeDelay = "#t=03";
+    }
 
     if (subSite == "fulcrum") {   //Fulcrum
         for (var i = 0; i < arPIDs.length; i++) {
@@ -87,13 +91,16 @@ x.document.close();
 
 
 function tableCell() {
-       if (a == 1) {   // 2nd cell is video cell.
+   
+    
+    
+    if (a == 1) {   // 2nd cell is video cell.
          if (site == "MrP") {
              
-             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' width='" + mrpVideoWidth + "px'  height='" + mrpVideoHeight + "px'><source type='video/mp4' src='https://video.mrporter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
+             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' width='" + mrpVideoWidth + "px'  height='" + mrpVideoHeight + "px'><source type='video/mp4' src='https://video.mrporter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4" + timeDelay + "'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
          }
             else if (site == "NAP") {
-             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' height='" + napImageHeight + "px'  width='" + napVideoWidth + "px'><source type='video/mp4' src='https://video.net-a-porter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
+             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' height='" + napImageHeight + "px'  width='" + napVideoWidth + "px'><source type='video/mp4' src='https://video.net-a-porter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4" + timeDelay + "'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
          }
         }
               
