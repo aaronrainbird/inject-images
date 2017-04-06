@@ -265,7 +265,7 @@ function defineChoices() {
               arPIDs = userDefinedPIDs.match(/.{1,6}/g)
         }
     }
-    else {
+    else if (arPIDs.length == 0) {
          userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
               userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
               arPIDs = userDefinedPIDs.match(/.{1,6}/g)
