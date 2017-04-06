@@ -36,8 +36,8 @@ var j = 0;
 
 var napImageWidth = 390;
 var napImageHeight = 585;
-var napVideoWidth = 399.19;
-var napVideoHeight = 421.7;
+var napVideoWidth = 420;
+var napVideoHeight = 443;
 var mrpImageWidth = 464;
 var mrpImageHeight = 475;
 var mrpVideoWidth = 464;
@@ -100,10 +100,30 @@ function tableCell() {
              tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' width='" + mrpVideoWidth + "px'  height='" + mrpVideoHeight + "px'><source type='video/mp4' src='https://video.mrporter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4?" + timeDelay + "'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
          }
             else if (site == "NAP") {
-             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' height='" + napImageHeight + "px'  width='" + napVideoWidth + "px'><source type='video/mp4' src='https://video.net-a-porter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4?" + timeDelay + "'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
+             tableHTML +=  "<td class='columns' style='background-color: lightgrey;'><video id='my-video' class='video-js' preload='auto' controls data-setup='{}' width='" + napVideoWidth + "px'  height='" + napVideoHeight + "px'><source type='video/mp4' src='https://video.net-a-porter.com/videos/productPage/" + arPIDs[i] + "_detail.mp4?" + timeDelay + "'></video><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
          }
         }
-              
+        
+    else if (a == 2){
+        console.log(arImageTypes[a])
+        if (site == "MrP") {
+            tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' onmouseover=this.src='https://cache.mrporter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_mrp_bk" + "_xl.jpg?" + escape(new Date()) + "' onmouseout=this.src='https://cache.mrporter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_mrp_in" + "_xl.jpg?" + escape(new Date()) + "' width='" + mrpImageWidth + "px' height='" + mrpImageHeight + "px'><BR>";
+          
+        }
+        else {
+            tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' onmouseover=this.src='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_bk_pp.jpg?" + escape(new Date()) + "' onmouseout=this.src='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_in_pp.jpg?" + escape(new Date()) + "' width='" + napImageWidth + "px' height='" + napImageHeight + "px'><BR>";
+            
+            // https://cache.net-a-porter.com/images/products/854930/854930_bk_pp.jpg?Thu%20Apr%2006%202017%2016%3A30%3A52%20GMT+0100%20(BST)
+            
+            /*
+             tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' onmouseover=this.src='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_bk_pp.jpg?" + escape(new Date()) + "' onmouseout=this.src='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_in_pp.jpg?" + escape(new Date()) + "' width='" + napImageWidth + "px' height='" + napImageHeight + "px'><BR>"; 
+            
+            */
+        } 
+            tableHTML += filename + "</td>";
+        
+    }
+    
         else {
          
         if (site == "MrP") {
@@ -111,7 +131,7 @@ function tableCell() {
           
         }
         else {
-            tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' width='" + napImageWidth + "px' height='" + napImageHeight + "x'><BR>";
+            tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' width='" + napImageWidth + "px' height='" + napImageHeight + "px'><BR>";
             
         } 
             tableHTML += filename + "</td>";
@@ -166,23 +186,13 @@ function imageFileLocation() {
     
    if (site == "MrP") {  //MrP
         filename = arPIDs[i] + "_mrp_" + arImageTypes[a];
-       if (typeOfImages == 2) {
-           return "https://cache.mrporter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + "mrp" + "_" + arImageTypes[a] + "_xl.jpg?" + escape(new Date()); 
-        }    
-        else {
-             return "https://cache.mrporter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_mrp_" + arImageTypes[a] + "_xl.jpg?" + escape(new Date());
-        }         
+        return "https://cache.mrporter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_mrp_" + arImageTypes[a] + "_xl.jpg?" + escape(new Date());       
     }
     else if (site == "NAP") {    //NAP
         filename = arPIDs[i] + "_" + arImageTypes[a];
-        if (typeOfImages == 2) {
-            return "https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypes[a] + "_pp.jpg?" + escape(new Date());
-        }  
-        
-        else {
-             return "https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypes[a] + "_pp.jpg?" + escape(new Date());
-        }
-          
+      
+        return "https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypes[a] + "_pp.jpg?" + escape(new Date());
+           
     }
     
 }
@@ -233,8 +243,10 @@ function defineChoices() {
                     site = "MrP";
                 }
           
-                userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
-                arPIDs = userDefinedPIDs.split(/[ ,]+/).filter(Boolean);
+              userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
+              userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
+              arPIDs = userDefinedPIDs.match(/.{1,6}/g)
+
       
             }
           }
