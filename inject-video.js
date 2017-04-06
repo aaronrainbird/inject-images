@@ -255,14 +255,22 @@ function defineChoices() {
     if (typeOfImages == 2 && arPIDs.length > 0) {
         var includePIDs = prompt('Theres PIDs on this page, want to include those?\n1. Yes\n2. No');
         if (includePIDs == 1) {
-              userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)',arPIDs.join(','));
-              arPIDs = userDefinedPIDs.split(/[ ,]+/).filter(Boolean);
+               userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
+              userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
+              arPIDs = userDefinedPIDs.match(/.{1,6}/g)
         }
         else {
-              userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
-              arPIDs = userDefinedPIDs.split(/[ ,]+/).filter(Boolean);
+               userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
+              userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
+              arPIDs = userDefinedPIDs.match(/.{1,6}/g)
         }
-    }      
+    }
+    else {
+         userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
+              userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
+              arPIDs = userDefinedPIDs.match(/.{1,6}/g)
+    }
+    
  }
 
 function getFulcrumInfo() {
