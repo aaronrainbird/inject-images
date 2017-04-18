@@ -244,6 +244,7 @@ function defineChoices() {
                 }
           
               userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
+                userDefinedPIDs = userDefinedPIDs.replace(/mp4/g,'');  
               userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
               arPIDs = userDefinedPIDs.match(/.{1,6}/g)
 
@@ -256,18 +257,21 @@ function defineChoices() {
         var includePIDs = prompt('Theres PIDs on this page, want to include those?\n1. Yes\n2. No');
         if (includePIDs == 1) {
                userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)',arPIDs.join(","));
-              userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
+            userDefinedPIDs = userDefinedPIDs.replace(/mp4/g,'');      
+          userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
               arPIDs = userDefinedPIDs.match(/.{1,6}/g)
         }
         else {
                userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
-              userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
+            userDefinedPIDs = userDefinedPIDs.replace(/mp4/g,'');      
+          userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
               arPIDs = userDefinedPIDs.match(/.{1,6}/g)
         }
     }
     else if (arPIDs.length == 0) {
          userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
-              userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
+      userDefinedPIDs = userDefinedPIDs.replace(/mp4/g,'');       
+      userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
               arPIDs = userDefinedPIDs.match(/.{1,6}/g)
     }
     
