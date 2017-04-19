@@ -1,58 +1,45 @@
-//  classificationSecondCategory = classificationSecondCategory.substr(classificationSecondCategory.indexOf("    ")+4);
-//  document.getElementsByClassName('pl-products-item__link')[0].href
-
-// var pidsPath = document.getElementsByClassName('pl-products-item__link')
-
-// pids = pidsPath.replace(/^.*[\\\/]/, '');   
-
-// https://www.mrporter.com/mens/search?keywords=globe   (allows search terms)
-  
-var imageType = "";
-var subImageType = 1;  //group 2 is individual
-var pidsPath = "";
-var pidNo = "";
-var arDefaultImageTypes = ["in","rw","fr","bk","ou","ou2","ou3","cu","e1","e2","e3","e4","e5","e6","e7","e8","sw"];
-var arDefaultImageTypesFulcrum = ["desc","in","rw","fr","bk","ou","ou2","ou3","cu","e1","e2","e3","e4","e5","e6","e7","e8","sw","buying1","buying2","buying3"];
 
 var a = 0;
 var i = 0;
 var l = 0;
 
-var arUserDefinedPIDs = [];
-var arFulcrumPIDs = [];
+var subSite = "";
+var site = "";
+var loadPIDs = 0;
+var imageClass = "";
+var typeOfImages = "";
+var typeOfImagesIndividual = "";
+
+var arPIDs = [];
 var arFulcrumDesignerPIDs = [];
 var arFulcrumProductDescriptionPIDs = [];
 var arFulcrumProductNotesPIDs = [];
 var arFulcrumColourPIDs = [];
 var arFulcrumCategoryPIDs = [];
 var arFulcrumSubcategoryPIDs = [];
-var fulcrumDesigner = "";
-var fulcrumProductDescription = "";
-var fulcrumProductNotes = "";
-var fulcrumColour = "";
-var fulcrumCategory = "";
-var fulcrumSubcategory = "";
-
-var selectPIDs = ""
-
-/*
-NAP imageClass = "product-image"
-TON imageClass = "product-image"
-MRP if (document.getElementsByClassName('pl-products-item__link').length > 1) {
-        var imageClass = "pl-products-item__link";
-    }
-    else {
-        var imageClass = "product-image";
-    }    
-
-*/
-
-var subSite = "";
-var site = "";
-var loadPIDs;
-var imageClass = "";
+var arDefaultImageTypes = ["desc","in","rw","fr","bk","ou","ou2","ou3","cu","e1","e2","e3","e4","e5","e6","e7","e8","sw"];
 
 siteIdentify();
+getPIDs();
+console.log(arPIDs.join(','))
+imageTypes();
+
+function imageTypes() {
+    if (arPIDs.length > 0) {
+        loadPIDs = prompt('What images would you like to view on the ' + site + ' site? \n1. All images on Page\n2. User defined PIDs');
+    }
+    if (loadPIDs == 2) {
+        userDefinedPIDs = prompt('Type multiple 6 digit PIDs below to search them on the ' + site + ' site.\n(Dont worry about removing spaces)');
+            userDefinedPIDs = userDefinedPIDs.replace(/mp4/g,''); 
+            userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');
+            arPIDs = userDefinedPIDs.match(/.{1,6}/g)
+    }
+        typeOfImages = prompt('What image type would you like to load? \n1. All images \n2. Specific image type');
+
+    if (typeOfImages == 2) {
+        typeOfImagesIndividual = prompt('What image would you like to view? \n1. IN\n2. RW\n3. FR\n4. BK\n5. OU\n6. OU2\n7. OU3\n8. CU\n9. E1\n10. E2\n11. E3\n12. E4\n13. E5\n14. E6\n15. E7\n16. E8\n17. SW');
+    }
+}
 
 function siteIdentify () {
 
@@ -62,7 +49,6 @@ function siteIdentify () {
         }
         else {
             site = "nap";
-           
         }
     }
     else if (document.URL.search('theoutnet') != -1) {
@@ -92,7 +78,7 @@ function siteIdentify () {
     if (site == "") {
 
         site = prompt("It doesn't seem that on you're on any of the YNAP brand websites.  What site would you like to search for images? \n1. NAP\n2. The Outnet\n3. Mr Porter");
-        loadPIDs = 0;
+        loadPIDs = 2;
         switch(site) {
             case "1":
                 site = "nap";
@@ -110,97 +96,98 @@ function siteIdentify () {
 }
 
 
-function getPIDsOnPage() {
-    if (loadPIDs != 0) {     
-        if (site == "nap") {
-            // Also account for errors!
-            pidsPath = document.getElementsByClassName('product-image')[i].childNodes[1].pathname;
+
+function getPIDs() {
+    if (loadPIDs != 2) {     
+        if (subSite == "fulcrum") {
+            for (l=0; l < document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes.length; l++) {
+    
+                if (document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes.length > 19) {
+                    if (document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].style.visibility != "collapse") {
+                    arPIDs.push(document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[1].childNodes[0].childNodes[1].childNodes[0].childNodes[1].textContent);
+                    
+                    arFulcrumDesignerPIDs.push(document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[1].childNodes[0].childNodes[0].textContent.trim());   
+                    
+                    arFulcrumProductDescriptionPIDs.push(document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[1].childNodes[1].childNodes[0].textContent.trim());
+                    
+                    arFulcrumProductNotesPIDs.push(document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[1].childNodes[2].textContent.trim());       
+                        
+                    arFulcrumColourPIDs.push(document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[2].childNodes[5].textContent.trim());
+    
+                    arFulcrumCategoryPIDs.push(document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[2].childNodes[2].textContent.trim());
+                        
+                    arFulcrumSubcategoryPIDs.push(document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[2].childNodes[0].textContent.trim()); 
+                    }
+                }
+            }
         }
-        if (site == "ton") {
-            pidsPath = document.getElementsByClassName('list-item')[i].href;
+        else if (site == "nap" && document.getElementsByClassName('product-image').length > 0) {
+            for (a = 0;a<document.getElementsByClassName('product-image').length;a++) {
+                        arPIDs.push(document.getElementsByClassName('product-image')[a].childNodes[1].childNodes[1].src.replace(/^.*[\\\/]/, '').slice(0,6));
+            }     
         }
-        if (site == "mrp") {
-            if (document.getElementsByClassName('pl-products-item__link').length > 1) {
-                var pidsPath = document.getElementsByClassName(imageClass)[i].href; 
+        else if (site == "ton" && document.getElementsByClassName('product-image').length > 0) {
+           
+            for (a = 0;a<document.getElementsByClassName('product-image').length;a++) {
+                        arPIDs.push(document.getElementsByClassName('product-image')[a].dataset.src.replace(/^.*[\\\/]/, '').slice(0,6));
+            }      
+        }
+        else if (site == "mrp") {
+            if (document.getElementsByClassName('pl-products-item__link') != undefined) {
+                for (a = 0;a<document.getElementsByClassName('pl-products-item__link').length;a++) {
+                        arPIDs.push(document.getElementsByClassName('pl-products-item__link')[a].childNodes[0].childNodes[0].src.replace(/^.*[\\\/]/, '').slice(0,6));
+                }                
+            }
+            else if (document.getElementsByClassName('product-image') != undefined) {
+                   for (a = 0;a<document.getElementsByClassName('product-image').length;a++) {
+                        arPIDs.push(document.getElementsByClassName('product-image')[a].childNodes[1].childNodes[1].src.replace(/^.*[\\\/]/, '').slice(0,6));
+                    }
             }
             else {
-                var pidsPath = document.getElementsByClassName(imageClass)[i].childNodes[1].childNodes[1].src;
+                loadPIDs = 2;
             }
         }
-
+        else {
+            loadPIDs = 2;
+        }
     }
 }
 
 
-  if (site == "ton") {     
-        var pidsPath = document.getElementsByClassName('list-item')[i].href;
-        var pidsFull = pidsPath.replace(/^.*[\\\/]/, '');   
-        return pidsFull.slice(0,6);         
-    }
-    if (site == "mrp") {
-        
-           
-        var pidsFull = pidsPath.replace(/^.*[\\\/]/, '');         
-        return pidsFull.slice(0,6);
-        
-    }
-    if (site == "nap") {
-       
-        
-       
-        if (pidsPath.slice(0,8) == '/product') {
-            var pidsFull = pidsPath.replace('/product/', '');    
-            
-        }
-        else {
-            var pathArray = window.location.pathname.split( '/' );
-            var pidsFull = pidsPath.replace("/" + pathArray[1] + "/" + pathArray[2] + "/product/", '');
-        }
 
-        return pidsFull.slice(0,6);
-        
-    }
 
+
+function clean(node)
+{
+  for(var n = 0; n < node.childNodes.length;n++)
+  {
+    var child = node.childNodes[n];
+    if
+    (
+      child.nodeType === 8 
+      || 
+      (child.nodeType === 3 && !/\S/.test(child.nodeValue))
+    )
+    {
+      node.removeChild(child);
+      n --;
+    }
+    else if(child.nodeType === 1)
+    {
+      clean(child);
+    }
+  }
+}
+
+
+
+/*
 
 
 
       
-    for (l=0; l < document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes.length; l++) {
     
-            if (document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes.length > 19) {
-                if (document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].style.visibility != "collapse") {
-                arFulcrumPIDs.push(document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[1].childNodes[0].childNodes[1].childNodes[0].childNodes[1].textContent);
-                
-                fulcrumDesigner = document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[1].childNodes[0].childNodes[0].textContent;
-                
-                arFulcrumDesignerPIDs.push(fulcrumDesigner.trim());
-                
-                fulcrumProductDescription = document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[1].childNodes[1].childNodes[0].textContent;
  
-                arFulcrumProductDescriptionPIDs.push(fulcrumProductDescription.trim());
-                
-                fulcrumProductNotes = document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[1].childNodes[2].textContent;
-  
-                arFulcrumProductNotesPIDs.push(fulcrumProductNotes.trim());   
-                    
-                fulcrumColour = document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[2].childNodes[5].textContent
-  
-                arFulcrumColourPIDs.push(fulcrumColour.trim());  
-                    
-                 fulcrumCategory = document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[2].childNodes[2].textContent;
-  
-                arFulcrumCategoryPIDs.push(fulcrumCategory.trim());  
-                    
-                 fulcrumSubcategory =  document.getElementById('photography_worklist_details').childNodes[0].childNodes[2].childNodes[l].childNodes[2].childNodes[0].textContent;  
-  
-                arFulcrumSubcategoryPIDs.push(fulcrumSubcategory.trim());      
-                    
-                    
-                   
-            }
-        }
-    typeOfImages = 5;    
-    }
     
     
 }
@@ -211,68 +198,6 @@ else {
 if (typeOfImages == 3 || typeOfImages == 4) {
     var userDefinedPIDs = prompt('Type in as many 6 digit pids seperated by a comma as you like to view them.\n(Dont worry about removing spaces)');
 } 
-    
-if (typeOfImages == 2 || typeOfImages == 4) {
-    var typeOfImagesIndividual = prompt('What image would you like to view? \n1. IN\n2. RW\n3. FR\n4. BK\n5. OU\n6. OU2\n7. OU3\n8. CU\n9. E1\n10. E2\n11. E3\n12. E4\n13. E5\n14. E6\n15. E7\n16. E8\n17. SW');
-         switch(typeOfImagesIndividual) {
-            case "1":
-                var imageType = "in";
-                break;
-            case "2":
-               var imageType = "rw";
-                break;
-            case "3":
-               var imageType = "fr";
-                break;
-            case "4":
-              var imageType = "bk";
-                break;
-            case "5":
-                var imageType = "ou";
-                break;
-            case "6":
-               var imageType = "ou2";
-                break;
-            case "7":
-               var imageType = "ou3";
-                break;    
-            case "8":
-               var imageType = "cu";
-                break;    
-            case "9":
-               var imageType = "e1";
-                break;    
-            case "10":
-               var imageType = "e2";
-                break;    
-            case "11":
-               var imageType = "e3";
-                break;    
-            case "12":
-               var imageType = "e4";
-                break;    
-            case "13":
-               var imageType = "e5";
-                break; 
-            case "14":
-               var imageType = "e6";
-                break; 
-             case "15":
-               var imageType = "e7";
-                break;
-             case "16":
-               var imageType = "e8";    
-                break;      
-            case "17":
-               var imageType = "sw";    
-                break; 
-            default:
-               var imageType = "in";
-        }     
-}
-
-    
-}
 
 
 var tableHTML = beginHTML();
@@ -554,27 +479,7 @@ function imageFileLocation() {
 }
 
 
-function clean(node)
-{
-  for(var n = 0; n < node.childNodes.length;n++)
-  {
-    var child = node.childNodes[n];
-    if
-    (
-      child.nodeType === 8 
-      || 
-      (child.nodeType === 3 && !/\S/.test(child.nodeValue))
-    )
-    {
-      node.removeChild(child);
-      n --;
-    }
-    else if(child.nodeType === 1)
-    {
-      clean(child);
-    }
-  }
-}
+
 
 
 
