@@ -190,7 +190,7 @@ makeTable();
 
 function makeTable() {
 
-    var tableHTML = "<button id='myBtn'>Open Modal</button><!-- The Modal --><div id='myModal' class='modal'>  <!-- Modal content -->  <div class='modal-content'>    <span class='close'>&times;</span>    <p>Some text in the Modal..</p>  </div> </div>'"
+    var tableHTML = "<button id='myBtn'>Open Modal</button><!-- The Modal --><div id='myModal' class='modal'>  <!-- Modal content -->  <div class='modal-content'>    <span class='close'>&times;</span>   <textarea class='pids' rows='15' cols='100' style='font-size:16px;background-color: lightblue'>" + arPIDs.join(',') + "</textarea><h3>Choose Image Types:</h3><button id='selectAll' onclick='selectAll()'>Select All</button><button id='selectNone' onclick='selectNone()'>Select None</button><BR><BR><input type='checkbox' class='imageType' name='imageType' value='in'>IN<input type='checkbox' class='imageType' name='imageType' value='rw'>RW<input type='checkbox' class='imageType' name='imageType' value='fr'>FR<input type='checkbox' class='imageType' name='imageType' value='bk'>BK<input type='checkbox' class='imageType' name='imageType' value='ou'>OU<input type='checkbox' class='imageType' name='imageType' value='video'>Video<input type='checkbox' class='imageType' name='imageType' value='e1'>E1<input type='checkbox' class='imageType' name='imageType' value='e2'>E2<input type='checkbox' class='imageType' name='imageType' value='e3'>E3<input type='checkbox' class='imageType' name='imageType' value='e4'>E4<input type='checkbox' class='imageType' name='imageType' value='e5'>E5<input type='checkbox' class='imageType' name='imageType' value='e6'>E6<input type='checkbox' class='imageType' name='imageType' value='e7'>E7<input type='checkbox' class='imageType' name='imageType' value='e8'>E8<input type='checkbox' class='imageType' name='imageType' value='e9'>E9<BR><BR>Site to search for PID's: <select size='3' selected='ton'  id='siteDropdown'><option value='nap'>NAP</option><option value='mrp'>MrP</option><option value='ton'>TON</option></select><BR><BR><button class='injectImages' onclick='injectImages()'>Inject Images</button>  </div> </div>'"
     var headHTML = "/* The Modal (background) */ .modal {     display: none; /* Hidden by default */    position: fixed; /* Stay in place */    z-index: 1; /* Sit on top */    left: 0;    top: 0;    width: 100%; /* Full width */    height: 100%; /* Full height */    overflow: auto; /* Enable scroll if needed */    background-color: rgb(0,0,0); /* Fallback color */    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */ } /* Modal Content/Box */ .modal-content {  background-color: #fefefe;   margin: 15% auto; /* 15% from the top and centered */    padding: 20px;   border: 1px solid #888;    width: 80%; /* Could be more or less, depending on screen size */ } /* The Close Button */ .close {   color: #aaa;    float: right;    font-size: 28px;    font-weight: bold; } .close:hover, .close:focus {    color: black;    text-decoration: none;    cursor: pointer; }"
 
 var style = document.createElement('style');
@@ -204,6 +204,39 @@ document.getElementsByTagName('body')[0].appendChild(addHTML);
 style.innerHTML = headHTML;
 addHTML.innerHTML = tableHTML; 
 
+document.getElementById('myModal').style.display = "block"
+
+document.getElementById('siteDropdown').value = site;
+
+var span = document.getElementsByClassName("close")[0];
+
+var modal = document.getElementById('myModal');
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+}
+
+
+function selectAll() { 
+    for (var b = 0;b<document.getElementsByClassName('imageType').length;b++) { 
+        document.getElementsByClassName('imageType')[b].checked = true; 
+    } 
+} 
+
+function selectNone() { 
+    for (var b = 0;b<document.getElementsByClassName('imageType').length;b++) { 
+        document.getElementsByClassName('imageType')[b].checked = false; 
+    } 
+} 
+
 
 
 /*
@@ -211,7 +244,7 @@ addHTML.innerHTML = tableHTML;
 Here's the Javascript to make it fly.'
 
 // Get the modal
-var modal = document.getElementById('myModal');
+
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
@@ -242,7 +275,7 @@ window.onclick = function(event) {
 
 
  
-}
+
 
 
 /*
