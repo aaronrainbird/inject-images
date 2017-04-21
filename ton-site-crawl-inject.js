@@ -78,8 +78,3 @@ function tableCell() {
         tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypes[a] + "_sl.jpg?" + escape(new Date()) + "'><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
     }
 }
-
-
-
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc. Terms Privacy Security Status Help
