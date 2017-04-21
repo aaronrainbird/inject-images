@@ -11,8 +11,8 @@ var typeOfImages = 0;
 var filename = "";
 var imageTypeAmount = "";
 
-var napImageWidth = 180;
-var napImageHeight = 270;
+// var napImageWidth = 180;
+// var napImageHeight = 270;
 
 var i = 0;
 var j = 0;
@@ -72,9 +72,9 @@ x.document.close();
     
 function tableCell() {
     if (arImageTypesIndividual.length == 1) {
-        tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypesIndividual[0] + "_sl.jpg?" + escape(new Date()) + "'><BR>" + arPIDs[i] + "_" + arImageTypesIndividual[0] + "</td>";
+        tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='https://cache.theoutnet.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypesIndividual[0] + "_l.jpg?" + escape(new Date()) + "'><BR>" + arPIDs[i] + "_" + arImageTypesIndividual[0] + "</td>";
     }
     else {
-        tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypes[a] + "_sl.jpg?" + escape(new Date()) + "'><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
+        tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='https://cache.theoutnet.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_" + arImageTypes[a] + "_l.jpg?" + escape(new Date()) + "'><BR>" + arPIDs[i] + "_" + arImageTypes[a] + "</td>";
     }
 }
