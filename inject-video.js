@@ -93,9 +93,9 @@ function defineChoices() {                      //  Identifies what subsite you'
                     site = "MrP";
                 }
           
-              userDefinedPIDs = prompt('Type multiple 6 or 7 digit PIDs below to search them on the ' + site + ' site.\n \n Any separator can be used (space,comma,hyphen) just dont mix them. \n \n E.g:652651,521521,6353434 (comma separated) not:251252, 424142, 242424 (which has a comma AND a space) \n \n');
+              userDefinedPIDs = prompt('Type multiple 6 or 7 digit PIDs below to search them on the ' + site + ' site.\n \n Use only spaces or commas as a separator, they can be mixed. \n \n');
               userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0]
-              arPids = userDefinedPIDs.split(userDefinedPIDsSeparator)
+              arPids = userDefinedPIDs.split(/[\s,]+/)
               // userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');   
               // arPIDs = userDefinedPIDs.match(/.{1,6}/g)
 
