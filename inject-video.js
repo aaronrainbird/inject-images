@@ -95,7 +95,7 @@ function defineChoices() {                      //  Identifies what subsite you'
                 }
           
               userDefinedPIDs = prompt('Type multiple 6 or 7 digit PIDs below to search them on the ' + site + ' site.\n \n Use only spaces or commas as a separator, they can be mixed. \n \n');
-              userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
+             // userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
               arPids = userDefinedPIDs.split(/[\s,]+/);
               // userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');   
               // arPIDs = userDefinedPIDs.match(/.{1,6}/g)
@@ -108,19 +108,19 @@ function defineChoices() {                      //  Identifies what subsite you'
     if (typeOfImages == 2 && arPIDs.length > 0) {     // Chosen user defined PIDs but there's some on the page.
         var includePIDs = prompt('There are PIDs on this page, want to include those?\n1. Yes\n2. No');
         if (includePIDs == 1) {
-                               userDefinedPIDs = prompt('Type multiple 6 or 7 digit PIDs below to search them on the ' + site + ' site.\n \n Use only spaces or commas as a separator, they can be mixed. \n \n');
-              userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
+                               userDefinedPIDs = prompt('Type multiple 6 or 7 digit PIDs below to search them on the ' + site + ' site.\n \n Use only spaces or commas as a separator, they can be mixed. \n \n',arPIDs.join(','));
+            //  userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
               arPids = userDefinedPIDs.split(/[\s,]+/);
         }
         else {
                userDefinedPIDs = prompt('Type multiple 6 or 7 digit PIDs below to search them on the ' + site + ' site.\n \n Use only spaces or commas as a separator, they can be mixed. \n \n');
-              userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
+             // userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
               arPids = userDefinedPIDs.split(/[\s,]+/);
         }
     }
     else if (arPIDs.length == 0) {    // No PID numbers on the page, just take user search.
           userDefinedPIDs = prompt('Type multiple 6 or 7 digit PIDs below to search them on the ' + site + ' site.\n \n Use only spaces or commas as a separator, they can be mixed. \n \n');
-              userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
+           //   userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
               arPids = userDefinedPIDs.split(/[\s,]+/);
     }
     
