@@ -95,7 +95,9 @@ function defineChoices() {                      //  Identifies what subsite you'
                 }
           
               userDefinedPIDs = prompt('Type multiple 6 or 7 digit PIDs below to search them on the ' + site + ' site.\n \n Use only spaces or commas as a separator, they can be mixed. \n \n');
+               userDefinedPIDs = userDefinedPIDs.replace(/_detail.mp4/g,"")
              // userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
+              
               arPIDs = userDefinedPIDs.split(/[\s,]+/);
               // userDefinedPIDs = userDefinedPIDs.replace(/[^0-9]+/g, '');   
               // arPIDs = userDefinedPIDs.match(/.{1,6}/g)
@@ -109,17 +111,20 @@ function defineChoices() {                      //  Identifies what subsite you'
         var includePIDs = prompt('There are PIDs on this page, want to include those?\n1. Yes\n2. No');
         if (includePIDs == 1) {
                                userDefinedPIDs = prompt('Type multiple 6 or 7 digit PIDs below to search them on the ' + site + ' site.\n \n Use only spaces or commas as a separator, they can be mixed. \n \n',arPIDs.join(','));
+           userDefinedPIDs = userDefinedPIDs.replace(/_detail.mp4/g,"")
             //  userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
               arPIDs = userDefinedPIDs.split(/[\s,]+/);
         }
         else {
                userDefinedPIDs = prompt('Type multiple 6 or 7 digit PIDs below to search them on the ' + site + ' site.\n \n Use only spaces or commas as a separator, they can be mixed. \n \n');
+           userDefinedPIDs = userDefinedPIDs.replace(/_detail.mp4/g,"")
              // userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
               arPIDs = userDefinedPIDs.split(/[\s,]+/);
         }
     }
     else if (arPIDs.length == 0) {    // No PID numbers on the page, just take user search.
           userDefinedPIDs = prompt('Type multiple 6 or 7 digit PIDs below to search them on the ' + site + ' site.\n \n Use only spaces or commas as a separator, they can be mixed. \n \n');
+       userDefinedPIDs = userDefinedPIDs.replace(/_detail.mp4/g,"")
            //   userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
               arPIDs = userDefinedPIDs.split(/[\s,]+/);
     }
