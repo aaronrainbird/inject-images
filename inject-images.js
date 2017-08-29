@@ -390,13 +390,13 @@ function findPid() {
 
 function imageFileLocation() {
     
-     if (a == 17) {
+     if (a == 18) {
          return "http://fulcrum.net-a-porter.com/static/images/product/" + arFulcrumPIDs[i] + "/" + "100.jpg?" + escape(new Date());
      }
-     else if (a == 18) {
+     else if (a == 19) {
           return "http://fulcrum.net-a-porter.com/static/images/product/" + arFulcrumPIDs[i] + "/" + "200.jpg?" + escape(new Date());
      }
-     else if (a == 19) {
+     else if (a == 20) {
          return "http://fulcrum.net-a-porter.com/static/images/product/" + arFulcrumPIDs[i] + "/" + "300.jpg?" + escape(new Date());
      }
     
