@@ -113,7 +113,7 @@ else {
     
    var typeOfImages = prompt('What image would you like to view? \n1. All Images\n2. Specific Images\n3. User defined PIDs - All Images\n4. User defined PIDs - Specific Images');
 if (typeOfImages == 3 || typeOfImages == 4) {
-    var userDefinedPIDs = prompt('Type in as many 6 digit pids seperated by a comma as you like to view them.\n(Dont worry about removing spaces)');
+    var userDefinedPIDs = prompt('Type in as many 6/7 digit pids (seperated by a comma or spaces) as you like to view them.');
 } 
     
 if (typeOfImages == 2 || typeOfImages == 4) {
@@ -355,7 +355,7 @@ function findPid() {
     if (site == "ton") {     
         var pidsPath = document.getElementsByClassName('list-item')[i].href;
         var pidsFull = pidsPath.replace(/^.*[\\\/]/, '');   
-        return pidsFull.slice(0,6);         
+        return pidsFull.split("/")[0]         
     }
     if (site == "mrp") {
         if (document.getElementsByClassName('pl-products-item__link').length > 1) {
@@ -366,7 +366,7 @@ function findPid() {
         }
            
         var pidsFull = pidsPath.replace(/^.*[\\\/]/, '');         
-        return pidsFull.slice(0,6);
+        return pidsFull.split("/")[0]
         
     }
     if (site == "nap") {
@@ -382,7 +382,7 @@ function findPid() {
             var pidsFull = pidsPath.replace("/" + pathArray[1] + "/" + pathArray[2] + "/product/", '');
         }
 
-        return pidsFull.slice(0,6);
+        return pidsFull.split("/")[0];
         
     }
     
