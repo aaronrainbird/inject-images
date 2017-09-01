@@ -366,7 +366,7 @@ function findPid() {
         }
            
         var pidsFull = pidsPath.replace(/^.*[\\\/]/, '');         
-        return pidsFull.split("/")[0]
+        return pidsFull.split("_")[0]
         
     }
     if (site == "nap") {
