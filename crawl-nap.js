@@ -43,7 +43,7 @@ for(var i=0;i<document.getElementsByClassName("product-image").length;i++) {
             var pidsFull = pidsPath.replace("/" + pathArray[1] + "/" + pathArray[2] + "/product/", '');
         }
 
-     arrPIDS.push(pidsFull.slice(0,6))
+     arrPIDS.push(pidsFull.slice(0,pidsFull.indexOf("/")))
 
     }
     document.getElementsByClassName('next-page')[0].click();
