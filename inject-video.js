@@ -96,6 +96,8 @@ function defineChoices() {                      //  Identifies what subsite you'
           
               userDefinedPIDs = prompt('Type multiple 6 or 7 digit PIDs below to search them on the ' + site + ' site.\n \n Use only spaces or commas as a separator, they can be mixed. \n \n');
                userDefinedPIDs = userDefinedPIDs.replace(/_detail.mp4/g,"")
+              userDefinedPIDs = userDefinedPIDs.replace(/.mp4/g,"")
+              
              // userDefinedPIDsSeparator = userDefinedPIDs.match(/\D/)[0];
               
               arPIDs = userDefinedPIDs.split(/[\s,]+/);
