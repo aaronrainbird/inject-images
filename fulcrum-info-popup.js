@@ -1,6 +1,8 @@
 var title = document.getElementsByClassName('subtitle')[0].innerText
 var pids = document.getElementsByClassName('piditem');
 var classification = document.getElementsByClassName('classification');
+var designer = document.getElementsByClassName('designer');
+    var productName = document.getElementsByClassName('product_name');
 
 for (var i = 0;i<pids.length;i++) {
 
@@ -11,7 +13,7 @@ var pidListInfo = "<H1>" + title + "</H1><TABLE style='border:1px black solid'>"
 
 for (var i = 0;i<pids.length;i++) {
 if (document.getElementsByClassName('product_details')[i].innerText.indexOf('DC1') >0 ) {
-pidListInfo += "<TR style='border:1px black solid'><TD style='border:1px black solid'>" + pids[i].innerText + "</TD><TD>" + classification[i].innerText + "</TD></TR>"
+pidListInfo += "<TR style='border:1px black solid'><TD style='border:1px black solid'>" + pids[i].innerText + "</TD><TD style='border:1px black solid'>" + designer[i].innerText + "</TD><TD style='border:1px black solid'>" + productName[i].innerText + "</TD><TD style='border:1px black solid'>" + classification[i].innerText + "</TD></TR>"
 }
     
 }
