@@ -68,13 +68,13 @@ for (var i = 0; i < pidRows.length; i++) {
 }
 
 var arPidsPricing = []
-
+document.getElementsByClassName('fakelink')[0].style.fontSize = "20px"
 for (var c = 0; c < arProducts.length; c++) {
     grabPriceInfo(arProducts[c].pidNo);
 }
-
+ 
 function grabPriceInfo(pid) {
-
+   
     var xhttp = new XMLHttpRequest();
     var parser = new DOMParser();
     xhttp.onreadystatechange = function () {
@@ -89,10 +89,23 @@ function grabPriceInfo(pid) {
 
 }
 
-function readyCheck() {
-    console.log(arPidsPricing.length + " _ " + arProducts.length)
-    if (arPidsPricing.length == arProducts.length) {
+function addLoadingDiv() {
+/*
+var newNode = document.createElement('div');
 
+newNode.innerHTML = "<div style='position:absolute;top:10%;background-color:lightgray;left: 30%;z-index: 5000;width: 40%;text-align: center;height: 5%;display: table-cell;vertical-align: middle;font-size: 30px;'>Loading Prices</div>"
+newNode.id = "loadingText";
+
+var referenceNode = document.getElementById('main');
+referenceNode.appendChild(newNode);
+*/
+}
+
+function readyCheck() {
+document.getElementsByClassName('fakelink')[0].innerText = "Loading Prices: " + arPidsPricing.length + " of " + arProducts.length;
+    
+    if (arPidsPricing.length == arProducts.length) {
+        
         var pidListInfo = "<TABLE>"
 
         for (var i = 0; i < arProducts.length; i++) {
