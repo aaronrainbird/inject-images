@@ -9,6 +9,13 @@ var labelRows = document.getElementsByClassName("label_rows");
 var filterButtons = document.getElementsByClassName('filterButton');
 var listOfPids = document.getElementsByClassName('piditem');
 
+if (document.getElementsByClassName('channel_logo')[0].src.indexOf('NAP') > -1) {
+    var channel = 'channel_1'
+}
+else {
+    var channel = 'channel_5'
+}
+
 var approved = 0;
 var readyForApproval = 0;
 var uploaded = 0;
@@ -72,15 +79,15 @@ document.getElementsByClassName('fakelink')[0].style.fontSize = "20px"
 for (var c = 0; c < arProducts.length; c++) {
     grabPriceInfo(arProducts[c].pidNo);
 }
- 
+
 function grabPriceInfo(pid) {
-   
+
     var xhttp = new XMLHttpRequest();
     var parser = new DOMParser();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             updateListHTML = parser.parseFromString(this.responseText, "text/html");
-            arPidsPricing.push({ pid: pid, price: updateListHTML.getElementsByClassName('channel_5')[0].cells[12].innerText.trim().replace("GBP", '') })
+            arPidsPricing.push({ pid: pid, price: updateListHTML.getElementsByClassName(channel)[0].cells[12].innerText.trim().replace("GBP", '') })
             readyCheck()
         }
     }
@@ -90,22 +97,22 @@ function grabPriceInfo(pid) {
 }
 
 function addLoadingDiv() {
-/*
-var newNode = document.createElement('div');
-
-newNode.innerHTML = "<div style='position:absolute;top:10%;background-color:lightgray;left: 30%;z-index: 5000;width: 40%;text-align: center;height: 5%;display: table-cell;vertical-align: middle;font-size: 30px;'>Loading Prices</div>"
-newNode.id = "loadingText";
-
-var referenceNode = document.getElementById('main');
-referenceNode.appendChild(newNode);
-*/
+    /*
+    var newNode = document.createElement('div');
+    
+    newNode.innerHTML = "<div style='position:absolute;top:10%;background-color:lightgray;left: 30%;z-index: 5000;width: 40%;text-align: center;height: 5%;display: table-cell;vertical-align: middle;font-size: 30px;'>Loading Prices</div>"
+    newNode.id = "loadingText";
+    
+    var referenceNode = document.getElementById('main');
+    referenceNode.appendChild(newNode);
+    */
 }
 
 function readyCheck() {
-document.getElementsByClassName('fakelink')[0].innerText = "Loading Prices: " + arPidsPricing.length + " of " + arProducts.length;
-    
+    document.getElementsByClassName('fakelink')[0].innerText = "Loading Prices: " + arPidsPricing.length + " of " + arProducts.length;
+
     if (arPidsPricing.length == arProducts.length) {
-        
+
         var pidListInfo = "<TABLE>"
 
         for (var i = 0; i < arProducts.length; i++) {
@@ -184,7 +191,7 @@ function listInfo() {
 function openPrompt(HTML) {
     var myWindow = window.open("", "MsgWindow2" + Math.random(), "width=1400,height=1000");
     myWindow.document.write(HTML);
- 
+
 }
 
 
