@@ -51,7 +51,8 @@ for (var i = 0; i < pidRows.length; i++) {
         //     Description:document.getElementsByClassName('product_description')[i].innerText,
         //     Colour:document.getElementsByClassName('classification')[i].childNodes[5].textContent.trim(),
         Category: document.getElementsByClassName('classification')[i].childNodes[2].textContent.trim(),
-        Subcategory: document.getElementsByClassName('classification')[i].childNodes[0].textContent.trim()
+        Subcategory: document.getElementsByClassName('classification')[i].childNodes[0].textContent.trim(),
+        DC: document.getElementsByClassName('product_details')[i].querySelectorAll("[id^='other-details']")[0].innerText
 
         //     Season:document.getElementsByClassName('classification')[i].childNodes[8].textContent.trim(),
         // Priority:document.getElementsByClassName('product_details')[i].childNodes[4].childNodes[0].childNodes[0].innerText.trim(),
@@ -117,7 +118,7 @@ function readyCheck() {
 
         for (var i = 0; i < arProducts.length; i++) {
 
-            pidListInfo += "<TR><TD>" + arProducts[i].pidNo + "</TD>" + "<TD>" + arProducts[i].Vendor + "</TD>" + "<TD>" + arProducts[i].Category + "</TD>" + "<TD>" + arProducts[i].Subcategory + "</TD><TD>" + arProducts[i].videoCaptured + "</TD><TD>" + arProducts[i].VideoBy + "</TD><TD id='" + arProducts[i].pidNo + "'>" + "Price Coming" + "</TD><TD>" + arProducts[i].List + "</TD></TR>"
+            pidListInfo += "<TR><TD>" + arProducts[i].pidNo + "</TD>" + "<TD>" + arProducts[i].Vendor + "</TD>" + "<TD>" + arProducts[i].Category + "</TD>" + "<TD>" + arProducts[i].Subcategory +  "</TD>" + "<TD>" + arProducts[i].DC + "</TD><TD>" + arProducts[i].videoCaptured + "</TD><TD>" + arProducts[i].VideoBy + "</TD><TD id='" + arProducts[i].pidNo + "'>" + "Price Coming" + "</TD><TD>" + arProducts[i].List + "</TD></TR>"
         }
         pidListInfo += "</TABLE>"
 
