@@ -139,7 +139,7 @@ function readyCheck() {
         for (var a = 0; a < arPidsPricing.length; a++) {
             for (var b = 0; b < properHTML.rows.length; b++) {
                 if (arPidsPricing[a].pid == properHTML.rows[b].cells[0].innerText) {
-                    properHTML.rows[b].cells[6].innerText = arPidsPricing[a].price;
+                    properHTML.rows[b].cells[7].innerText = arPidsPricing[a].price;
                 }
             }
         }
