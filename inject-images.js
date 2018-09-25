@@ -16,8 +16,12 @@ if (window.location.href.search("jira") > -1) {
     else {
         var site = "nap"
     }
+if (document.getElementsByClassName('user-content-block')[0].innerText.match(/\d+/g) == null) {
+    var pids = [document.getElementsByClassName('type-textfield')[0].innerText.substr(5,20)]
+}
+else {
     var pids = document.getElementsByClassName('user-content-block')[0].innerText.match(/\d+/g).map(Number);
-
+}
     window.open("https://rawgit.com/aaronrainbird/injectImages/master/index.htm?channel=" + site + "&pids=" + pids.join(",") + "&imagesPerRow=4&imageTypes=in,fr,bk,ou,cu,e1,e2,e3,e4,e5,e6,e7,e8,rw,ou2,ou3,sw&pidsPerPage=50&pageNumber=1&showMissing=false", '_blank');
 }
 
@@ -295,6 +299,7 @@ x.document.open();
 x.document.write(tableHTML);
 x.document.close();
 
+}
     
 function tableCell() {
     if (typeOfImages == 1) {
