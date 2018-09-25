@@ -6,7 +6,23 @@
 // pids = pidsPath.replace(/^.*[\\\/]/, '');   
 
 // https://www.mrporter.com/mens/search?keywords=globe   (allows search terms)
-  
+
+if (window.location.href.search("jira") > -1) {
+
+
+    if (document.getElementsByClassName('ghx-extra-field')[1].innerText == "MrP") {
+        var site = "mrp"
+    }
+    else {
+        var site = "nap"
+    }
+    var pids = document.getElementsByClassName('user-content-block')[0].innerText.match(/\d+/g).map(Number);
+
+    window.open("https://rawgit.com/aaronrainbird/injectImages/master/index.htm?channel=" + site + "&pids=" + pids.join(",") + "&imagesPerRow=4&imageTypes=in,fr,bk,ou,cu,e1,e2,e3,e4,e5,e6,e7,e8,rw,ou2,ou3,sw&pidsPerPage=50&pageNumber=1&showMissing=false", '_blank');
+}
+
+else {
+
 var imageType = "";
 var subImageType = 1;  //group 2 is individual
 var pidsPath = "";
