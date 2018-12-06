@@ -196,11 +196,11 @@ function tableCell() {
     else if (a == 2){
         console.log(arImageTypes[a])
         if (site == "MrP") {
-            tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' onmouseover=this.src='https://cache.mrporter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_mrp_ou" + "_xl.jpg?" + escape(new Date()) + "' onmouseout=this.src='https://cache.mrporter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_mrp_in" + "_xl.jpg?" + escape(new Date()) + "' width='" + mrpImageWidth + "px' height='" + mrpImageHeight + "px'><BR>";
+            tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' onmouseover=this.src='https://cache.mrporter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_mrp_bk" + "_xl.jpg?" + escape(new Date()) + "' onmouseout=this.src='https://cache.mrporter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_mrp_in" + "_xl.jpg?" + escape(new Date()) + "' width='" + mrpImageWidth + "px' height='" + mrpImageHeight + "px'><BR>";
           
         }
         else {
-            tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' onmouseover=this.src='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_ou_pp.jpg?" + escape(new Date()) + "' onmouseout=this.src='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_in_pp.jpg?" + escape(new Date()) + "' width='" + napImageWidth + "px' height='" + napImageHeight + "px'><BR>";
+            tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' onmouseover=this.src='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_bk_pp.jpg?" + escape(new Date()) + "' onmouseout=this.src='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_in_pp.jpg?" + escape(new Date()) + "' width='" + napImageWidth + "px' height='" + napImageHeight + "px'><BR>";
             
             // https://cache.net-a-porter.com/images/products/854930/854930_bk_pp.jpg?Thu%20Apr%2006%202017%2016%3A30%3A52%20GMT+0100%20(BST)
             
@@ -216,11 +216,12 @@ function tableCell() {
         else {
          
         if (site == "MrP") {
-            tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' width='" + mrpImageWidth + "px' height='" + mrpImageWidth + "px'><BR>";
+            tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' onmouseover=this.src='https://cache.mrporter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_mrp_fr" + "_xl.jpg?" + escape(new Date()) + "' onmouseout=this.src='https://cache.mrporter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_mrp_ou" + "_xl.jpg?" + escape(new Date()) + "' width='" + mrpImageWidth + "px' height='" + mrpImageHeight + "px'><BR>";
           
         }
         else {
-            tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' width='" + napImageWidth + "px' height='" + napImageHeight + "px'><BR>";
+            tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "' onmouseover=this.src='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_fr_pp.jpg?" + escape(new Date()) + "' onmouseout=this.src='https://cache.net-a-porter.com/images/products/" + arPIDs[i] + "/" + arPIDs[i] + "_ou_pp.jpg?" + escape(new Date()) + "' width='" + napImageWidth + "px' height='" + napImageHeight + "px'><BR>";
+            
             
         } 
             tableHTML += filename + "</td>";
