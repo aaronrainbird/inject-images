@@ -16,8 +16,10 @@
 */
 
 var pidRows = document.querySelectorAll("[id^='row_for_pc']")
+var listOfPids = document.getElementsByClassName('piditem');
 
 buildPids();
+
 /*
 if (document.getElementById('staffSummaryAdmin') == undefined) {
     firstTimeRun();
@@ -29,11 +31,7 @@ if (document.getElementById('staffSummaryAdmin') == undefined) {
 ///////////////////////////////// FUNCTIONS TO GET ALL STATS ON PAGE ///////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function buildPids() {   // this builds arPIDs
-
-    
-        // this builds arPIDs
-      
+function buildPids(pids) {   // this builds arPIDs     
         let arFulcrum = {
           PIDs: generatePIDs(document.getElementsByClassName('piditem')),
           Statuses: {
@@ -71,7 +69,7 @@ function buildPids() {   // this builds arPIDs
 
     
 
-        // let listOfPids = document.getElementsByClassName('piditem');
+        // 
     
    
         // Build arSpecial
@@ -91,11 +89,12 @@ function buildPids() {   // this builds arPIDs
 function generatePIDs(allPIDs) {
 
     let arPIDs = [];
-console.log(allPIDs)
+
 for (let i = 0; i < allPIDs.length; ++i)         // Goes through the rows. 
 {  
     arPIDs.push({
         PidNo: allPIDs[i].textContent,
+        Price: grabPriceInfo(allPIDs[i].textContent),
         Designer: document.getElementsByClassName('designer')[i].textContent.split('PID')[0].trim(),
         ProductName: document.getElementsByClassName('product_name')[i].textContent.trim(),
         ProductDescription: document.getElementsByClassName('product_description')[i].textContent.trim(),
@@ -105,21 +104,125 @@ for (let i = 0; i < allPIDs.length; ++i)         // Goes through the rows.
         Season: document.getElementsByClassName('classification')[i].childNodes[12].data.trim(),
         Video: document.getElementById("image_icon_" + allPIDs[i].textContent + "_15").src == "http://fulcrum.net-a-porter.com/static/images/icons/film.png",
         Colour: document.getElementsByClassName('classification')[i].childNodes[8].data.trim(),
-        CellStatus: [],
+        CellStatus: cellStatusCheck(i),
         DC: (document.getElementsByClassName('product_details')[i].textContent.search("Shot@") != -1) ? document.getElementsByClassName('product_details')[i].textContent.substr(document.getElementsByClassName('product_details')[i].textContent.search("Shot@") + 5, 10).trim() : "",
         Priority: document.getElementsByClassName('product_details')[i].textContent.search('Priority Item: ') != -1
     })
-
-    for (let n = 0; n < 12; n++)     // Goes through the columns.
-    {
-        var cell = document.getElementById("image_icon_" + allPIDs[i].textContent + "_" + (n + 1)).src.replace(/^.*[\\\/]/, '')
-       // arPIDs[i].CellStatus.push(cellStatusCheck(i, n, cell));
-       arPIDs[i].CellStatus.push(1);
-    }
     
     }
     return arPIDs;
 }
+
+
+
+
+
+
+
+function cellStatusCheck(i) {
+
+
+    for (let n = 0; n < 12; n++)  {   // Goes through the columns.
+       
+        let cellDetails = ({
+            retoucher: document.getElementById("retoucher_label_" + listOfPids[i].textContent + "_" + (n + 1)).title.replace("Last Retouched By: ", ""),
+            photographer: document.getElementById("photographer_label_" + listOfPids[i].textContent + "_" + (n + 1)).title.replace("Last Shot By: ", ""),
+            image: document.getElementById("image_icon_" + listOfPids[i].textContent + "_" + (n + 1)).src.replace(/^.*[\\\/]/, ''),
+            cellBGColor: document.getElementById("image_info_" + listOfPids[i].textContent + "_" + (n + 1)).style.backgroundColor,
+            textStatus: iconCheck(document.getElementById("image_icon_" + allPIDs[i].textContent + "_" + (n + 1)).src.replace(/^.*[\\\/]/, ''),"status")
+        })
+    /*
+        // Build Status Object
+        statusObject(i, n, iconCheck(document.getElementById("image_icon_" + allPIDs[i].textContent + "_" + (n + 1)).src.replace(/^.*[\\\/]/, ''),"status"),iconCheck(document.getElementById("image_icon_" + allPIDs[i].textContent + "_" + (n + 1)).src.replace(/^.*[\\\/]/, ''),"category"))
+    
+        if (document.getElementById("retoucher_label_" + listOfPids[i].textContent + "_" + (n + 1)).title.replace("Last Retouched By: ", "") != "") {
+            retoucherObject(document.getElementById("retoucher_label_" + listOfPids[i].textContent + "_" + (n + 1)).title.replace("Last Retouched By: ", ""), textStatus, i);
+        }
+    
+        if (document.getElementById("retoucher_label_" + listOfPids[i].textContent + "_" + (n + 1)).title.replace("Last Shot By: ", "") != "") {
+            photographerObject(document.getElementById("photographer_label_" + listOfPids[i].textContent + "_" + (n + 1)).title.replace("Last Shot By: ", ""), textStatus, i);
+        }
+        */
+    
+    ////////////////////////////////////////////////////////THIS IS WHERE YOU COULD SAVE THE OTHER DATA ON THE PAGE.
+    }
+        console.log(cellDetails)
+
+        
+    }
+
+
+
+
+    function iconCheck(icon, option) {
+        let icons = {
+          "bullet_toggle_plus.png": {
+            status: "blank",
+            category: ""
+          },
+          "tick.png": {
+            status: "approved",
+            category: "totalImagesRetouched"
+          },
+          "picture_edit.png": {
+            status: "readyForApproval",
+            category: "totalImagesRetouched"
+          },
+          "asterisk_yellow.png": {
+            status: "uploaded",
+            category: "totalImagesRetouched"
+          },
+          "delete.png": {
+            status: "deleteCell",
+            category: ""
+          },
+          "pencil.png": {
+            status: "needsAmends",
+            category: "imagesToBeRetouched"
+          },
+          "rainbow.png": {
+            status: "needsColourMatching",
+            category: "imagesToBeRetouched"
+          },
+          "color_wheel.png": {
+            status: "beingRetouched",
+            category: "imagesToBeRetouched"
+          },
+          "exlamation.png": {
+            status: "needsReshoot",
+            category: "problemImages"
+          },
+          "cross.png": {
+            status: "fileMissing",
+            category: "problemImages"
+          },
+          "page_white.png": {
+            status: "unclassified",
+            category: ""
+          },
+          "film.png": {
+            status: "video",
+            category: ""
+          }
+        };
+      
+        return icons[icon][option];
+    }
+
+function grabPriceInfo(pid) {
+
+    var xhttp = new XMLHttpRequest();
+    var parser = new DOMParser();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            return(parser.parseFromString(this.responseText, "text/html"));
+        }
+    }
+    xhttp.open("GET", "http://fulcrum.net-a-porter.com/product/" + pid + "/overview", true);
+    xhttp.send();
+
+}
+
 
 /*
 
