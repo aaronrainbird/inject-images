@@ -16,9 +16,8 @@
 */
 
 var pidRows = document.querySelectorAll("[id^='row_for_pc']")
-var listOfPids = document.getElementsByClassName('piditem');
 
-buildPids();
+buildPids(document.getElementsByClassName('piditem'));
 
 /*
 if (document.getElementById('staffSummaryAdmin') == undefined) {
@@ -33,7 +32,7 @@ if (document.getElementById('staffSummaryAdmin') == undefined) {
 
 function buildPids(pids) {   // this builds arPIDs     
         let arFulcrum = {
-          PIDs: generatePIDs(document.getElementsByClassName('piditem')),
+          PIDs: generatePIDs(pids),
           Statuses: {
             total: { pids: [], count: 0 },
             totalImagesRetouched: { pids: [], count: 0 },
@@ -63,7 +62,7 @@ function buildPids(pids) {   // this builds arPIDs
           List: {
             Channel: document.getElementsByClassName("channel_logo")[0].alt.search("NAP") == 0 ? "Net A Porter" : "Mr Porter",
             Name: document.getElementById("user_status").childNodes[1].textContent,
-            Title: document.getElementsByTagName("h3")[0].textContent
+            Title: document.getElementsByTagName("h3")[0].textContent.trim()
           }
         }
 
@@ -94,7 +93,7 @@ for (let i = 0; i < allPIDs.length; ++i)         // Goes through the rows.
 {  
     arPIDs.push({
         PidNo: allPIDs[i].textContent,
-        Price: grabPriceInfo(allPIDs[i].textContent),
+        // Price: grabPriceInfo(allPIDs[i].textContent),
         Designer: document.getElementsByClassName('designer')[i].textContent.split('PID')[0].trim(),
         ProductName: document.getElementsByClassName('product_name')[i].textContent.trim(),
         ProductDescription: document.getElementsByClassName('product_description')[i].textContent.trim(),
@@ -106,30 +105,25 @@ for (let i = 0; i < allPIDs.length; ++i)         // Goes through the rows.
         Colour: document.getElementsByClassName('classification')[i].childNodes[8].data.trim(),
         CellStatus: cellStatusCheck(i),
         DC: (document.getElementsByClassName('product_details')[i].textContent.search("Shot@") != -1) ? document.getElementsByClassName('product_details')[i].textContent.substr(document.getElementsByClassName('product_details')[i].textContent.search("Shot@") + 5, 10).trim() : "",
-        Priority: document.getElementsByClassName('product_details')[i].textContent.search('Priority Item: ') != -1
+        Priority: document.getElementsByClassName('product_details')[i].textContent.search('Priority Item:') != -1
     })
-    
+    console.log(arPIDs[i]) 
     }
     return arPIDs;
 }
 
-
-
-
-
-
-
 function cellStatusCheck(i) {
 
+    let cellDetails = [];
 
     for (let n = 0; n < 12; n++)  {   // Goes through the columns.
        
-        let cellDetails = ({
+       cellDetails[n] = ({
             retoucher: document.getElementById("retoucher_label_" + listOfPids[i].textContent + "_" + (n + 1)).title.replace("Last Retouched By: ", ""),
             photographer: document.getElementById("photographer_label_" + listOfPids[i].textContent + "_" + (n + 1)).title.replace("Last Shot By: ", ""),
             image: document.getElementById("image_icon_" + listOfPids[i].textContent + "_" + (n + 1)).src.replace(/^.*[\\\/]/, ''),
             cellBGColor: document.getElementById("image_info_" + listOfPids[i].textContent + "_" + (n + 1)).style.backgroundColor,
-            textStatus: iconCheck(document.getElementById("image_icon_" + allPIDs[i].textContent + "_" + (n + 1)).src.replace(/^.*[\\\/]/, ''),"status")
+            textStatus: iconCheck(document.getElementById("image_icon_" + listOfPids[i].textContent + "_" + (n + 1)).src.replace(/^.*[\\\/]/, ''),"status",document.getElementById("image_info_" + listOfPids[i].textContent + "_" + (n + 1)).style.backgroundColor)
         })
     /*
         // Build Status Object
@@ -143,71 +137,88 @@ function cellStatusCheck(i) {
             photographerObject(document.getElementById("photographer_label_" + listOfPids[i].textContent + "_" + (n + 1)).title.replace("Last Shot By: ", ""), textStatus, i);
         }
         */
+       
     
-    ////////////////////////////////////////////////////////THIS IS WHERE YOU COULD SAVE THE OTHER DATA ON THE PAGE.
     }
-        console.log(cellDetails)
+    return cellDetails;
 
-        
-    }
+    
+}
 
+function iconCheck(icon, option, BG) {
 
-
-
-    function iconCheck(icon, option) {
-        let icons = {
-          "bullet_toggle_plus.png": {
-            status: "blank",
-            category: ""
-          },
-          "tick.png": {
-            status: "approved",
-            category: "totalImagesRetouched"
-          },
-          "picture_edit.png": {
-            status: "readyForApproval",
-            category: "totalImagesRetouched"
-          },
-          "asterisk_yellow.png": {
-            status: "uploaded",
-            category: "totalImagesRetouched"
-          },
-          "delete.png": {
-            status: "deleteCell",
-            category: ""
-          },
-          "pencil.png": {
-            status: "needsAmends",
-            category: "imagesToBeRetouched"
-          },
-          "rainbow.png": {
-            status: "needsColourMatching",
-            category: "imagesToBeRetouched"
-          },
-          "color_wheel.png": {
-            status: "beingRetouched",
-            category: "imagesToBeRetouched"
-          },
-          "exlamation.png": {
-            status: "needsReshoot",
-            category: "problemImages"
-          },
-          "cross.png": {
-            status: "fileMissing",
-            category: "problemImages"
-          },
-          "page_white.png": {
-            status: "unclassified",
-            category: ""
-          },
-          "film.png": {
-            status: "video",
-            category: ""
-          }
-        };
+    if (icon == "picture_go.png" && BG == "rgb(255, 255, 255)") {
+          let icons = {
+            "picture_go.png": {
+              status: "shotTaken",
+              category: "imagesToBeRetouched"
+            }
+          };
+          return icons[icon][option];
+        } else if (icon == "picture_go.png") {
+          let icons = {
+            "picture_go.png": {
+              status: "needsRechecking",
+              category: "imagesToBeRetouched"
+            }
+          };
+          return icons[icon][option];
+        } 
+        else {
+          let icons = {
+            "bullet_toggle_plus.png": {
+              status: "blank",
+              category: ""
+            },
+            "tick.png": {
+              status: "approved",
+              category: "totalImagesRetouched"
+            },
+            "picture_edit.png": {
+              status: "readyForApproval",
+              category: "totalImagesRetouched"
+            },
+            "asterisk_yellow.png": {
+              status: "uploaded",
+              category: "totalImagesRetouched"
+            },
+            "delete.png": {
+              status: "deleteCell",
+              category: ""
+            },
+            "pencil.png": {
+              status: "needsAmends",
+              category: "imagesToBeRetouched"
+            },
+            "rainbow.png": {
+              status: "needsColourMatching",
+              category: "imagesToBeRetouched"
+            },
+            "color_wheel.png": {
+              status: "beingRetouched",
+              category: "imagesToBeRetouched"
+            },
+            "exclamation.png": {
+              status: "needsReshoot",
+              category: "problemImages"
+            },
+            "cross.png": {
+              status: "fileMissing",
+              category: "problemImages"
+            },
+            "page_white.png": {
+              status: "unclassified",
+              category: ""
+            },
+            "film.png": {
+              status: "video",
+              category: ""
+            }
+          };
+          return icons[icon][option];
+        }    
+}
       
-        return icons[icon][option];
-    }
 
 function grabPriceInfo(pid) {
 
