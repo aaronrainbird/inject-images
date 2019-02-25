@@ -252,7 +252,7 @@ if (null != staffSummaryAdmin) {
     
     var myRole = (retouchNameCount >= photogNameCount) ? "retoucher" : "photographer";
     
-    if (myName == "Aaron Rainbird" || myName == "Amy Drewitt" || myName == "Tom Lowther" || myName == "John Zampetti" || myName == "Tom Bradfield" || myName == "Gareth Durant" || myName == "Faye Sampson" ||  myName == "James Allum" || myName == "Constantin Cerdan" || myName == "Lewis Clark" || myName == "Jonathan Pearson") {
+    if (myName == "Aaron Rainbird" || myName == "Amy Drewitt" || myName == "Tom Lowther" || myName == "John Zampetti" || myName == "Tom Bradfield" || myName == "Gareth Durant" || myName == "Faye Sampson" ||  myName == "James Allum" || myName == "Mitchell Plume" || myName == "Lewis Clark" || myName == "Jonathan Pearson") {
        retoucherNumber = prompt("You're on the list of Retouch List Approvers, so you can see another retoucher's stats.  Just type the number you want and choose ok." + "\n\n" + retouchersListText + "\n [p] Switch to photographer's list.");
  
         
