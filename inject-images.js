@@ -303,7 +303,7 @@ x.document.close();
     
 function tableCell() {
     if (typeOfImages == 1) {
-        tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "'><BR>";
+        tableHTML += "<td class='columns' style='background-color: white;'><IMG SRC='" + imageFileLocation() + "'><BR>";
         if (site == "mrp") {
             tableHTML += pidNo + "_" + site + "_" + arDefaultImageTypes[a] + "</td>";
         }
@@ -312,7 +312,7 @@ function tableCell() {
         }
     }        
     else if (typeOfImages == 2) {
-        tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "'><BR>"; 
+        tableHTML += "<td class='columns' style='background-color: white;'><IMG SRC='" + imageFileLocation() + "'><BR>"; 
         if (site == "mrp") {
             tableHTML += pidNo + "_" + site + "_" + imageType + "</td>";
         }
@@ -321,7 +321,7 @@ function tableCell() {
         } 
     }
     else if (typeOfImages == 3 || typeOfImages == 4) {
-        tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "'><BR>";
+        tableHTML += "<td class='columns' style='background-color: white;'><IMG SRC='" + imageFileLocation() + "'><BR>";
         if (site == "mrp") {
             if (typeOfImages != 4) {
                 tableHTML += arUserDefinedPIDs[i] + "_" + site + "_" + arDefaultImageTypes[a] + "</td>";
@@ -341,10 +341,10 @@ function tableCell() {
     }
      else if (typeOfImages == 5) {
         if (a == 0) {
-        tableHTML += "<td class='columns' style='background-color: lightgrey;'><SPAN><B>" + arFulcrumDesignerPIDs[i] + "</B></SPAN><BR><SPAN style='font-size: smaller;'>" + arFulcrumProductDescriptionPIDs[i] + "</SPAN><BR><SPAN style='font-size: small;'>Colour: " + arFulcrumColourPIDs[i] + "</SPAN><BR><BR><I><SPAN style='font-size: small;'>" + arFulcrumProductNotesPIDs[i] + "</I><BR><BR></SPAN><SPAN style='font-size: smaller;'>" + arFulcrumCategoryPIDs[i] + "</SPAN><BR><SPAN style='font-size: small;'>" + arFulcrumSubcategoryPIDs[i] + "</SPAN>";
+        tableHTML += "<td class='columns' style='background-color: white;'><SPAN><B>" + arFulcrumDesignerPIDs[i] + "</B></SPAN><BR><SPAN style='font-size: smaller;'>" + arFulcrumProductDescriptionPIDs[i] + "</SPAN><BR><SPAN style='font-size: small;'>Colour: " + arFulcrumColourPIDs[i] + "</SPAN><BR><BR><I><SPAN style='font-size: small;'>" + arFulcrumProductNotesPIDs[i] + "</I><BR><BR></SPAN><SPAN style='font-size: smaller;'>" + arFulcrumCategoryPIDs[i] + "</SPAN><BR><SPAN style='font-size: small;'>" + arFulcrumSubcategoryPIDs[i] + "</SPAN>";
         }
         else {
-         tableHTML += "<td class='columns' style='background-color: lightgrey;'><IMG SRC='" + imageFileLocation() + "'><BR>";
+         tableHTML += "<td class='columns' style='background-color: white;'><IMG SRC='" + imageFileLocation() + "'><BR>";
         if (site == "mrp") {
             tableHTML += arFulcrumPIDs[i] + "_" + site + "_" + arDefaultImageTypesFulcrum[a] + "</td>";
         }
