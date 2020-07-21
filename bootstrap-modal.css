@@ -70,14 +70,16 @@ html [type="button"],
   outline: 0;
     font-family: sans-serif;
   line-height: 1.15;
-
-    margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
   text-align: left;
+    position: relative;
+  width: auto;
+  margin: 0.5rem;
+  pointer-events: none;
 }
 
 .modal-open .modal {
@@ -85,12 +87,6 @@ html [type="button"],
   overflow-y: auto;
 }
 
-.modal-dialog {
-  position: relative;
-  width: auto;
-  margin: 0.5rem;
-  pointer-events: none;
-}
 
 .modal.fade .modal-dialog {
   transition: -webkit-transform 0.3s ease-out;
