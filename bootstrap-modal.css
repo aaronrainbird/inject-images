@@ -57,7 +57,8 @@ html [type="button"],
   overflow: hidden;
 }
 
-.modal {
+.modal-dialog {
+  color: #000;
   position: fixed;
   top: 0;
   right: 0;
